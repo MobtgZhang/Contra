@@ -6,6 +6,8 @@ public:
     ~CCFG();
 
     static int GAME_WIDTH,GAME_HEIGHT;
+    static int keyIDA,keyIDS,keyIDD,KeyIDSpace,keyIDShift;
+
 };
 # endif
 

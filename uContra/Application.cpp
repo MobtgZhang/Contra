@@ -1,8 +1,8 @@
-# include "Application.h"
-# include "CCFG.h"
 # include <SDL2/SDL_mixer.h>
 # include <SDL2/SDL_image.h>
 # include <string>
+# include "Application.h"
+# include "CCFG.h"
 
 Application::Application(){
     this->quitGame = false;
@@ -21,25 +21,28 @@ Application::Application(){
     }
     //创建渲染
     rR = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
-
-    //创建图标
-    /*std::string fileName = "files/images/ico.png";
-    SDL_Surface* loadedSurface = IMG_LoadJPG_RW(SDL_RWFromFile(fileName.c_str(),"rb"));
-    SDL_SetColorKey(loadedSurface,SDL_TRUE,SDL_MapRGB(loadedSurface->format,0,0,0));
-
-    SDL_SetWindowIcon(window,loadedSurface);
-    SDL_FreeSurface(loadedSurface);
-    */
-
+    
     //设置全局事件信息
     mainEvent = new SDL_Event();
 
     //加载全局音效
     Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048);
     // 加载地图
-    
+    oMap = new Map(rR);
     //图标
+    //其他初始化
+    this->keyMenuPressed = this->movePressed = false;
+    this->keyS = this->keyW = this->keyA = this->keyD = this->keyShift = false;
+    
+    this->keyAPressed = this->keyDPressed = false;
 
+    this->mouseX = this->mouseY = 0;
+
+    CCFG::keyIDA = SDLK_a;
+    CCFG::keyIDS = SDLK_s;
+    CCFG::keyIDD = SDLK_d;
+    CCFG::KeyIDSpace = SDLK_SPACE;
+    CCFG::keyIDShift = SDLK_LSHIFT;
 }
 Application::~Application(){
     delete mainEvent;
