@@ -38,7 +38,12 @@ Application::Application(){
     }
     //创建渲染
     rR = SDL_CreateRenderer(window,-1,SDL_RENDERER_ACCELERATED);
-    
+    //图标
+    std::string fileName = "files/images/ico.png";
+    SDL_Surface* loadedSurface = IMG_LoadPNG_RW(SDL_RWFromFile(fileName.c_str(),"rb"));
+    SDL_SetColorKey(loadedSurface,SDL_TRUE,SDL_MapRGB(loadedSurface->format,255,0,255));
+    SDL_SetWindowIcon(window,loadedSurface);
+    SDL_FreeSurface(loadedSurface);
     //设置全局事件信息
     mainEvent = new SDL_Event();
 
@@ -46,7 +51,7 @@ Application::Application(){
     Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048);
     // 加载地图
     oMap = new Map(rR);
-    //图标
+    
     //其他初始化
     this->keyMenuPressed = this->movePressed = false;
     this->keyS = this->keyW = this->keyA = this->keyD = this->keyShift = false;
@@ -63,6 +68,7 @@ Application::Application(){
 }
 Application::~Application(){
     delete mainEvent;
+    delete oMap;
     SDL_DestroyRenderer(rR);
     SDL_DestroyWindow(window);
 }
