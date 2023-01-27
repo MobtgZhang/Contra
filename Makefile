@@ -1,10 +1,29 @@
-SOURCE_PATH=source
-TARGET_PATH=bin
+all: build
 
-EXECUTE_FILE=$(TARGET_PATH)/contra
+mkdir_build:
+	rm -rf build
+	mkdir -p build
 
-all:
-	mkdir -p $(TARGET_PATH)
-	g++ -o $(EXECUTE_FILE) $(SOURCE_PATH)/*.cpp -w -lSDL2 -lSDL_mixer -lSDL_image
+build: mkdir_build
+	cd build; cmake ..
+	make -C build
+
+build_ninja: mkdir_build
+	cd build; cmake -GNinja ..
+	ninja -C build
+
+debug: mkdir_build
+	cd build; cmake -DCMAKE_BUILD_TYPE=Debug ..
+	make -C build
+
+debug_ninja: mkdir_build
+	cd build; cmake -GNinja -DCMAKE_BUILD_TYPE=Debug ..
+	ninja -C build
+
+run:
+	cd build; ./uMario
+
+.PHONY: mkdir_build
+
 clean:
-	rm -rf $(TARGET_PATH)
+	rm -rf build

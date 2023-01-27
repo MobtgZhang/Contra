@@ -23,8 +23,9 @@ public:
     Application();
     ~Application();
 public:
-    Map *oMap;
+    static Map *oMap;
     static int mouseX,mouseY;
+    static bool mouseLeftPressed,mouseRightPressed;
     //判游戏是否退出
     static bool quitGame;
     void mainloop();

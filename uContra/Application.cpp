@@ -3,6 +3,23 @@
 # include <string>
 # include "Application.h"
 # include "CCFG.h"
+//类的静态需要初始化
+Map* Application::oMap = new Map();
+bool Application::mouseLeftPressed = false;
+bool Application::mouseRightPressed = false;
+int Application::mouseX = 0;
+int Application::mouseY = 0;
+bool Application::quitGame = false;
+
+bool Application::movePressed = false;
+bool Application::keyMenuPressed = false;
+bool Application::keyS = false;
+bool Application::keyW = false;
+bool Application::keyA = false;
+bool Application::keyD = false;
+bool Application::keyShift = false;
+bool Application::keyAPressed = false;
+bool Application::keyDPressed = false;
 
 Application::Application(){
     this->quitGame = false;
@@ -41,7 +58,7 @@ Application::Application(){
     CCFG::keyIDA = SDLK_a;
     CCFG::keyIDS = SDLK_s;
     CCFG::keyIDD = SDLK_d;
-    CCFG::KeyIDSpace = SDLK_SPACE;
+    CCFG::keyIDSpace = SDLK_SPACE;
     CCFG::keyIDShift = SDLK_LSHIFT;
 }
 Application::~Application(){
