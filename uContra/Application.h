@@ -10,6 +10,8 @@ private:
 	SDL_Event* mainEvent;
 
     // ----- FPS -----
+    long frameTime;
+    static const int MIN_FRAME_TIME = 16;
     unsigned long lFPSTime;
     int iNumOfFPS,iFPS;
     // ----- INPUT KEYS -----

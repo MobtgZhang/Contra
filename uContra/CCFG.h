@@ -8,6 +8,7 @@ public:
     static int GAME_WIDTH,GAME_HEIGHT;
     static int keyIDA,keyIDS,keyIDD,keyIDSpace,keyIDShift;
 
+    
 };
 # endif
 

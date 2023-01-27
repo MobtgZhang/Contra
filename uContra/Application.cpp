@@ -74,5 +74,17 @@ Application::~Application(){
 }
 
 void Application::mainloop(){
-    
+    lFPSTime = SDL_GetTicks();
+    while(!quitGame && mainEvent->type != SDL_QUIT){
+        frameTime = SDL_GetTicks();
+        SDL_PollEvent(mainEvent);
+        SDL_RenderClear(rR);
+        
+        SDL_SetRenderDrawColor(rR, 93, 148, 252, 255);
+
+        SDL_RenderFillRect(rR, NULL);
+        if(SDL_GetTicks() - frameTime < MIN_FRAME_TIME){
+            SDL_Delay(MIN_FRAME_TIME - (SDL_GetTicks() - frameTime));
+        }
+    }
 }
