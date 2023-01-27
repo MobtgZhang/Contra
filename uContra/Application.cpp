@@ -71,6 +71,7 @@ Application::~Application(){
     delete oMap;
     SDL_DestroyRenderer(rR);
     SDL_DestroyWindow(window);
+    SDL_Quit();
 }
 
 void Application::mainloop(){
@@ -81,8 +82,9 @@ void Application::mainloop(){
         SDL_RenderClear(rR);
         
         SDL_SetRenderDrawColor(rR, 93, 148, 252, 255);
-
         SDL_RenderFillRect(rR, NULL);
+
+
         if(SDL_GetTicks() - frameTime < MIN_FRAME_TIME){
             SDL_Delay(MIN_FRAME_TIME - (SDL_GetTicks() - frameTime));
         }
