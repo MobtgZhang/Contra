@@ -53,17 +53,7 @@ Application::Application(){
     oMap = new Map(rR);
 
     CCFG::getMusic()->PlayMusic();
-    // Title 
     
-    //读取背景图片信息，
-    //image = SDL_LoadBMP("./bg.bmp");
-
-    
-    //if (image == NULL) {
-    //    fprintf(stderr, "不能下载图片, %s\n", SDL_GetError());
-    //    return -1;
-    //}
-
     //其他初始化
     this->keyMenuPressed = this->movePressed = false;
     this->keyS = this->keyW = this->keyA = this->keyD = this->keyShift = false;
@@ -95,10 +85,11 @@ void Application::mainloop(){
         
         SDL_SetRenderDrawColor(rR, 93, 148, 252, 255);
         SDL_RenderFillRect(rR, NULL);
-
-
-
         
+
+
+
+
         
         if(SDL_GetTicks() - frameTime < MIN_FRAME_TIME){
             SDL_Delay(MIN_FRAME_TIME - (SDL_GetTicks() - frameTime));
