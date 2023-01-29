@@ -2,7 +2,7 @@
 # include <SDL2/SDL_image.h>
 # include <string>
 # include "Application.h"
-# include "CCFG.h"
+# include "CFG.h"
 //类的静态需要初始化
 Map* Application::oMap = new Map();
 bool Application::mouseLeftPressed = false;
@@ -51,12 +51,24 @@ Application::Application(){
     Mix_OpenAudio(44100,MIX_DEFAULT_FORMAT,2,2048);
     // 加载地图
     oMap = new Map(rR);
+
+    CCFG::getMusic()->PlayMusic();
+    // Title 
     
+    //读取背景图片信息，
+    //image = SDL_LoadBMP("./bg.bmp");
+
+    
+    //if (image == NULL) {
+    //    fprintf(stderr, "不能下载图片, %s\n", SDL_GetError());
+    //    return -1;
+    //}
+
     //其他初始化
     this->keyMenuPressed = this->movePressed = false;
     this->keyS = this->keyW = this->keyA = this->keyD = this->keyShift = false;
     
-    this->keyAPressed = this->keyDPressed = false;
+    this->keyAPressed = this->keyDPressed = this->firstDir = false;
 
     this->mouseX = this->mouseY = 0;
 
@@ -85,6 +97,9 @@ void Application::mainloop(){
         SDL_RenderFillRect(rR, NULL);
 
 
+
+        
+        
         if(SDL_GetTicks() - frameTime < MIN_FRAME_TIME){
             SDL_Delay(MIN_FRAME_TIME - (SDL_GetTicks() - frameTime));
         }

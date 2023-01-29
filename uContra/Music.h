@@ -62,6 +62,7 @@ public:
     };
 
     void PauseMusic();
+    void PlayMusic();
     void PlayChunk(eChunk chunkID);
     void PlayMusic(eMusic musicID);
     void StopMusic();

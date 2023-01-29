@@ -57,6 +57,15 @@ void Music::PlayChunk(eChunk chunkID) {
 	Mix_PlayChannel(-1, vChunk[chunkID], 0);
 }
 
+void Music::PlayMusic() {
+	if(currentMusic != mNOTHING) {
+		Mix_PlayMusic(vMusic[currentMusic - 1], -1);
+		musicStopped = false;
+	} else {
+		StopMusic();
+	}
+}
+
 void Music::PlayMusic(eMusic musicID) {
 	if(musicID != mNOTHING) {
 		Mix_PlayMusic(vMusic[musicID - 1], -1);

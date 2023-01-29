@@ -9,7 +9,10 @@ Map::Map(SDL_Renderer* rR){
 Map::~Map(){
     
 }
-
+// 加载开始标题部分
+void Map::load_Title(){
+    
+} 
 // 第一关
 void Map::load_Jungle(){
 
@@ -44,3 +47,12 @@ void Map::load_AlienLair(){
 
 }
 
+//飞机炸岛动画
+void load_Airplane(){
+
+}
+
+//显示最后制作人员
+void load_Trimplet(){
+
+} 
