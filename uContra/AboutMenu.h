@@ -7,6 +7,7 @@
 class AboutMenu: public Menu{
 private:
     unsigned int iTime;
+    int cR, cG, cB, nR, nG, nB;
 public:
     AboutMenu();
     ~AboutMenu();
@@ -14,6 +15,7 @@ public:
     void Draw(SDL_Renderer* rR);
     void enter();
     void updateTime();
+    void setBackgroundColor(SDL_Renderer* rR);
 };
 
 # endif

@@ -52,6 +52,8 @@ Application::Application(){
     // 加载地图
     oMap = new Map(rR);
 
+    CCFG::getMM()->setActiveOption(rR);
+    CCFG::getSMBLogo()->setImg("super_mario_bros",rR);
     CCFG::getMusic()->PlayMusic();
     
     //其他初始化
@@ -82,13 +84,24 @@ void Application::mainloop(){
         frameTime = SDL_GetTicks();
         SDL_PollEvent(mainEvent);
         SDL_RenderClear(rR);
-        
-        SDL_SetRenderDrawColor(rR, 93, 148, 252, 255);
-        SDL_RenderFillRect(rR, NULL);
-        
+
+        CCFG::getMM()->setBackgroundColor(rR);
+        SDL_RenderFillRect(rR,NULL);
 
 
+        //FPS 显示设置
 
+        CCFG::getText()->Draw(rR, "FPS:" + std::to_string(iNumOfFPS), CCFG::GAME_WIDTH - CCFG::getText()->getTextWidth("FPS:" + std::to_string(iNumOfFPS), 8) - 8, 5, 8);
+
+		if(SDL_GetTicks() - 1000 >= lFPSTime) {
+			lFPSTime = SDL_GetTicks();
+			iNumOfFPS = iFPS;
+			iFPS = 0;
+		}
+
+		++iFPS;
+
+		SDL_RenderPresent(rR);
 
         
         if(SDL_GetTicks() - frameTime < MIN_FRAME_TIME){

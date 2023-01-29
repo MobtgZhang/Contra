@@ -39,8 +39,8 @@ void CImg::Draw(SDL_Renderer* rR,SDL_Rect rCrop,SDL_Rect rRect){
 }
 
 void CImg::setImg(std::string fileName,SDL_Renderer* rR){
-    fileName = "files/images/" + fileName + ".png";
-    SDL_Surface* loadedSurface = IMG_LoadPNG_RW(SDL_RWFromFile(fileName.c_str(),"rb"));
+    fileName = "files/images/" + fileName + ".bmp";
+	SDL_Surface* loadedSurface = SDL_LoadBMP(fileName.c_str());
     SDL_SetColorKey(loadedSurface,SDL_TRUE,SDL_MapRGB(loadedSurface->format,255,0,255));
 
     tImg = SDL_CreateTextureFromSurface(rR,loadedSurface);

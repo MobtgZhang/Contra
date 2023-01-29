@@ -1,4 +1,5 @@
 # include "MenuManager.h"
+# include "Application.h"
 
 MenuManager::MenuManager(void) {
 	this->currentGameState = eMainMenu;
@@ -59,4 +60,21 @@ LoadingMenu* MenuManager::getLoadingMenu() {
 
 AboutMenu* MenuManager::getAboutMenu() {
 	return oAboutMenu;
+}
+
+void MenuManager::setBackgroundColor(SDL_Renderer* rR) {
+	switch(currentGameState) {
+		case eMainMenu:
+			Application::getMap()->setBackgroundColor(rR);
+			break;
+		case eGameLoading:
+			SDL_SetRenderDrawColor(rR, 0, 0, 0, 255);
+			break;
+		case eGame:
+			Application::getMap()->setBackgroundColor(rR);
+			break;
+		case eAbout:
+			oAboutMenu->setBackgroundColor(rR);
+			break;
+	}
 }

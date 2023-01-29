@@ -23,7 +23,7 @@ public:
     
     enum gameState {
         eMainMenu,
-        eLoading,
+        eGameLoading,
         eGame,
         eAbout,
         eOptions,
@@ -41,6 +41,7 @@ public:
     LoadingMenu* getLoadingMenu();
     AboutMenu* getAboutMenu();
     void resetActiveOptionID(gameState ID);
+    void setBackgroundColor(SDL_Renderer* rR);
 };
 
 # endif
