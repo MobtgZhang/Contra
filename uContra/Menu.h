@@ -1,25 +1,25 @@
-#pragma once
+#ifndef MENU_HEADERS
+#define MENU_HEADERS
 
-#ifndef MENUOPTION_H
-#define MENUOPTION_H
+# include <vector>
+# include <SDL2/SDL.h>
+# include "MenuOption.h"
 
-#include <string>
-
-class MenuOption
-{
-private:
-	std::string sText;
-	int iXPos, iYPos;
-
+class Menu{
 public:
-	MenuOption(std::string sText, int iXPos, int iYPos);
-	~MenuOption(void);
+	Menu();
+	~Menu();
 
-	std::string getText();
-	void setText(std::string sText);
+	std::vector<MenuOption*> lMO;
 
-	int getXPos();
-	int getYPos();
+	int activeMenuOption;
+	int numOfMenuOptions;
+
+	virtual void Update();
+	virtual void Draw(SDL_Renderer* rR);
+	
+	// ------- 0 = TOP, 1 = RIGHT, 2 = BOTTON, 3 = LEFT
+	virtual void updateActiveButton(int iDir);
 };
 
-#endif
+# endif

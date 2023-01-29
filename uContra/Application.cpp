@@ -96,3 +96,7 @@ void Application::mainloop(){
         }
     }
 }
+
+Map* Application::getMap(){
+    return oMap;
+}

@@ -3,7 +3,7 @@ Map::Map(){
 
 }
 Map::Map(SDL_Renderer* rR){
-    
+    this->iLevelType = 0;
 }
 
 Map::~Map(){
@@ -48,11 +48,33 @@ void Map::load_AlienLair(){
 }
 
 //飞机炸岛动画
-void load_Airplane(){
+void Map::load_Airplane(){
 
 }
 
 //显示最后制作人员
-void load_Trimplet(){
+void Map::load_Trimplet(){
 
 } 
+
+Event* Map::getEvent(){
+    return oEvent;
+}
+
+void Map::resetGameData(){
+	
+}
+
+void Map::setBackgroundColor(SDL_Renderer* rR) {
+	switch(iLevelType) {
+		case 0: case 2:
+			SDL_SetRenderDrawColor(rR, 93, 148, 252, 255);
+			break;
+		case 1: case 3: case 4:
+			SDL_SetRenderDrawColor(rR, 0, 0, 0, 255);
+			break;
+		default:
+			SDL_SetRenderDrawColor(rR, 93, 148, 252, 255);
+			break;
+	}
+}

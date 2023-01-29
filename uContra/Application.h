@@ -21,16 +21,26 @@ private:
     // ----- true = RIGHT, false = LEFT
     bool firstDir;
 
+    static Map* oMap;
+
+	// ----- Methods
+    /*
+	void Input();
+	void MouseInput();
+	void InputPlayer();
+	void InputMenu();
+    */
 public:
     Application();
     ~Application();
 public:
-    static Map *oMap;
     static int mouseX,mouseY;
     static bool mouseLeftPressed,mouseRightPressed;
     //判游戏是否退出
     static bool quitGame;
     void mainloop();
+
+    static Map* getMap();
 
 };
 # endif
