@@ -28,9 +28,9 @@ void MainMenu::Update(){
 }
 
 void MainMenu::Draw(SDL_Renderer* rR){
-    CCFG::getSMBLogo()->Draw(rR,80,48);
+    //注意窗口大小为800*448
+    CCFG::getSMBLogo()->Draw(rR,160,0);
     Menu::Draw(rR);
-    
 }
 
 void MainMenu::enter(){

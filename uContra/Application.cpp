@@ -92,7 +92,7 @@ void Application::mainloop(){
         Input();
 		MouseInput();
 		Update();
-		//Draw();
+		Draw();
         
         
         //FPS 显示设置
@@ -229,6 +229,6 @@ void Application::Update(){
 }
 
 void Application::Draw(){
-    
+    CCFG::getMM()->Draw(rR);
 }
 

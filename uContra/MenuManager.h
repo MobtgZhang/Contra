@@ -50,6 +50,8 @@ public:
     void escape();
 
     void Update();
+    void Draw(SDL_Renderer* rR);
+
 };
 
 # endif

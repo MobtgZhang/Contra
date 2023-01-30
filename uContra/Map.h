@@ -5,11 +5,13 @@
 # include<SDL2/SDL_mixer.h>
 # include<vector>
 # include"Event.h"
+# include "Player.h"
 
 class Map{
 private:
-    float fXpos,fYPos;
+    float fXPos,fYPos;
     Event* oEvent;
+    Player* oPlayer;
 
     void load_Title(); // 加载开始标题部分
     void load_Jungle(); // 第一关
@@ -29,6 +31,7 @@ public:
     Map(SDL_Renderer* rR);
     ~Map();
     
+    void Draw(SDL_Renderer* rR);
     void Update();
 
     void UpdateMinions();
@@ -37,13 +40,21 @@ public:
 	void UpdateMinionBlokcs();
 
 
-
+    Player* getPlayer();
     Event* getEvent();
 
+
+    void DrawGameLayout(SDL_Renderer* rR);
     // Loading
     void resetGameData();
     void setBackgroundColor(SDL_Renderer* rR);
-    
+
+    // make the blocks
+    void moveMap(int nX, int nY);
+    int getStartBlock();
+    int getEndBlock();
+    // Some drawings
+    void DrawMap(SDL_Renderer* rR);  
 };
 
 # endif

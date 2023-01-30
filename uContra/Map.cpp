@@ -1,13 +1,18 @@
 # include "Map.h"
-Map::Map(){
+# include "CFG.h"
 
+
+Map::Map(){
+    
 }
 Map::Map(SDL_Renderer* rR){
-    
+    oPlayer = new Player(rR, 84, 368);
+
+    oEvent = new Event();
 }
 
 Map::~Map(){
-    
+    delete oEvent;
 }
 // 加载开始标题部分
 void Map::load_Title(){
@@ -61,6 +66,10 @@ Event* Map::getEvent(){
     return oEvent;
 }
 
+Player* Map::getPlayer(){
+    return oPlayer;
+}
+
 void Map::resetGameData(){
 	
 }
@@ -86,6 +95,39 @@ void Map::UpdateMinionBlokcs(){
 
 }
 
+void Map::Draw(SDL_Renderer* rR){
+
+}
+
 void Map::Update(){
     
 }
+
+
+void Map::DrawMap(SDL_Renderer* rR){
+    
+}  
+
+void Map::DrawGameLayout(SDL_Renderer* rR){
+
+}
+
+void Map::moveMap(int nX, int nY) {
+	if (fXPos + nX > 0) {
+		oPlayer->updateXPos((int)(nX - fXPos));
+		fXPos = 0;
+	}
+	else {
+		this->fXPos += nX;
+	}
+}
+
+
+int Map::getStartBlock() {
+	return (int)(-fXPos - (-(int)fXPos) % 32) / 32;
+}
+
+int Map::getEndBlock() {
+	return (int)(-fXPos - (-(int)fXPos) % 32 + CCFG::GAME_WIDTH) / 32 + 2;
+}
+

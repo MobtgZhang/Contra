@@ -138,3 +138,35 @@ void MenuManager::Update() {
 	}
 }
 
+void MenuManager::Draw(SDL_Renderer* rR){
+	switch(currentGameState){
+		case eMainMenu:
+			Application::getMap()->DrawMap(rR);
+			Application::getMap()->DrawGameLayout(rR);
+			oMainMenu->Draw(rR);
+			break;
+		case eGameLoading:
+			oLoadingMenu->Draw(rR);
+			break;
+		case eGame:
+			Application::getMap()->Draw(rR);
+			break;
+		case eAbout:
+			Application::getMap()->DrawMap(rR);
+			oAboutMenu->Draw(rR);
+			break;
+		case eOptions:
+			Application::getMap()->DrawMap(rR);
+			Application::getMap()->getPlayer()->Draw(rR);
+			Application::getMap()->DrawGameLayout(rR);
+			oOptionsMenu->Draw(rR);
+			break;
+		case ePause:
+			Application::getMap()->DrawMap(rR);
+			Application::getMap()->getPlayer()->Draw(rR);
+			Application::getMap()->DrawGameLayout(rR);
+			oPauseMenu->Draw(rR);
+			break;
+	}
+}
+
