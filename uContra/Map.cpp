@@ -3,7 +3,7 @@ Map::Map(){
 
 }
 Map::Map(SDL_Renderer* rR){
-    this->iLevelType = 0;
+    
 }
 
 Map::~Map(){
@@ -66,15 +66,26 @@ void Map::resetGameData(){
 }
 
 void Map::setBackgroundColor(SDL_Renderer* rR) {
-	switch(iLevelType) {
-		case 0: case 2:
-			SDL_SetRenderDrawColor(rR, 0, 0, 0, 255);
-			break;
-		case 1: case 3: case 4:
-			SDL_SetRenderDrawColor(rR, 0, 0, 0, 255);
-			break;
-		default:
-			SDL_SetRenderDrawColor(rR, 93, 148, 252, 255);
-			break;
-	}
+	SDL_SetRenderDrawColor(rR, 0, 0, 0, 255);
+}
+
+
+void Map::UpdateMinions(){
+
+}
+
+void Map::UpdateMinionsCollisions(){
+
+}
+
+void Map::UpdateBlocks(){
+
+}
+
+void Map::UpdateMinionBlokcs(){
+
+}
+
+void Map::Update(){
+    
 }

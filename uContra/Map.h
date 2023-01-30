@@ -23,11 +23,20 @@ private:
     void load_Airplane(); //飞机炸岛动画
     void load_Trimplet(); //显示最后制作人员
 
-    int iLevelType; // 0, 1, 2;
+    
 public:
     Map();
     Map(SDL_Renderer* rR);
     ~Map();
+    
+    void Update();
+
+    void UpdateMinions();
+	void UpdateMinionsCollisions();
+	void UpdateBlocks();
+	void UpdateMinionBlokcs();
+
+
 
     Event* getEvent();
 

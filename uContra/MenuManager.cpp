@@ -48,7 +48,7 @@ void MenuManager::resetActiveOptionID(gameState ID){
 		case eOptions:
 			oOptionsMenu->activeMenuOption = 0;
 			break;
-		case ePasue:
+		case ePause:
 			oPauseMenu->activeMenuOption = 0;
 			break;
 	}
@@ -78,3 +78,63 @@ void MenuManager::setBackgroundColor(SDL_Renderer* rR) {
 			break;
 	}
 }
+
+void MenuManager::setKey(int keyID){
+	switch(currentGameState){
+		case eOptions:
+			oOptionsMenu->setKey(keyID);
+			break;		
+	}
+}
+
+void MenuManager::keyPressed(int iDir){
+	switch(currentGameState){
+		case eMainMenu:
+			oMainMenu->updateActiveButton(iDir);
+			break;
+		case eOptions:
+			oOptionsMenu->updateActiveButton(iDir);
+			break;
+		case ePause:
+			oPauseMenu->updateActiveButton(iDir);
+			break;
+	}
+}
+
+void MenuManager::enter(){
+
+}
+
+void MenuManager::escape(){
+	
+}
+
+void MenuManager::Update() {
+	switch(currentGameState) {
+		case eMainMenu:
+			oMainMenu->Update();
+			Application::getMap()->UpdateBlocks();
+			break;
+		case eGameLoading:
+			oLoadingMenu->Update();
+			break;
+		case eGame:
+			Application::getMap()->Update();
+			Application::getMap()->UpdateMinionsCollisions();
+			//oLE->Update();
+			break;
+		case eAbout:
+			Application::getMap()->UpdateMinions();
+			Application::getMap()->UpdateMinionBlokcs();
+			Application::getMap()->UpdateBlocks();
+			oAboutMenu->Update();
+			break;
+		case eOptions:
+			oOptionsMenu->Update();
+			break;
+		case ePause:
+			oPauseMenu->Update();
+			break;
+	}
+}
+

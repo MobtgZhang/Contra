@@ -27,7 +27,7 @@ public:
         eGame,
         eAbout,
         eOptions,
-        ePasue,
+        ePause,
     };
 
     gameState currentGameState;
@@ -35,6 +35,9 @@ public:
     CImg* getActiveOption();
     void setActiveOption(SDL_Renderer* rR);
     
+    void setKey(int keyID);
+    void keyPressed(int iDir);
+
     int getViewID();
 	void setViewID(gameState viewID);
     OptionsMenu* getOptions();
@@ -42,6 +45,11 @@ public:
     AboutMenu* getAboutMenu();
     void resetActiveOptionID(gameState ID);
     void setBackgroundColor(SDL_Renderer* rR);
+
+    void enter();
+    void escape();
+
+    void Update();
 };
 
 # endif

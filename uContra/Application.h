@@ -24,12 +24,10 @@ private:
     static Map* oMap;
 
 	// ----- Methods
-    /*
 	void Input();
 	void MouseInput();
 	void InputPlayer();
 	void InputMenu();
-    */
 public:
     Application();
     ~Application();
@@ -39,6 +37,9 @@ public:
     //判游戏是否退出
     static bool quitGame;
     void mainloop();
+    
+    void Update();
+	void Draw();
 
     static Map* getMap();
 

@@ -53,7 +53,7 @@ Application::Application(){
     oMap = new Map(rR);
 
     CCFG::getMM()->setActiveOption(rR);
-    CCFG::getSMBLogo()->setImg("super_mario_bros",rR);
+    CCFG::getSMBLogo()->setImg("contra",rR);
     CCFG::getMusic()->PlayMusic();
     
     //其他初始化
@@ -85,25 +85,28 @@ void Application::mainloop(){
         SDL_PollEvent(mainEvent);
         SDL_RenderClear(rR);
 
+        //设置菜单管理的背景颜色
         CCFG::getMM()->setBackgroundColor(rR);
         SDL_RenderFillRect(rR,NULL);
 
-
+        Input();
+		MouseInput();
+		Update();
+		//Draw();
+        
+        
         //FPS 显示设置
-
         CCFG::getText()->Draw(rR, "FPS:" + std::to_string(iNumOfFPS), CCFG::GAME_WIDTH - CCFG::getText()->getTextWidth("FPS:" + std::to_string(iNumOfFPS), 8) - 8, 5, 8);
-
 		if(SDL_GetTicks() - 1000 >= lFPSTime) {
 			lFPSTime = SDL_GetTicks();
 			iNumOfFPS = iFPS;
 			iFPS = 0;
 		}
-
 		++iFPS;
 
-		SDL_RenderPresent(rR);
 
-        
+
+		SDL_RenderPresent(rR);
         if(SDL_GetTicks() - frameTime < MIN_FRAME_TIME){
             SDL_Delay(MIN_FRAME_TIME - (SDL_GetTicks() - frameTime));
         }
@@ -113,3 +116,119 @@ void Application::mainloop(){
 Map* Application::getMap(){
     return oMap;
 }
+
+void Application::Input(){
+    switch(CCFG::getMM()->getViewID()){
+        case MenuManager::gameState::eGameLoading:
+            break;
+        default:
+            InputMenu();
+            break;
+    }
+}
+
+void Application::MouseInput() {
+	switch(mainEvent->type) {
+		case SDL_MOUSEBUTTONDOWN: {
+			switch (mainEvent->button.button) {
+				case SDL_BUTTON_LEFT:
+					mouseLeftPressed = true;
+					break;
+				case SDL_BUTTON_RIGHT:
+					mouseRightPressed = true;
+					break;
+			}
+			break;
+		}
+		case SDL_MOUSEMOTION: {
+			
+			SDL_GetMouseState(&mouseX, &mouseY);
+			//CCFG::getMM()->getConsole()->print("x:" + std::to_string(mouseX));
+			//CCFG::getMM()->getConsole()->print("y:" + std::to_string(mouseY));
+			break;
+		}
+		case SDL_MOUSEBUTTONUP: {
+			switch (mainEvent->button.button) {
+				case SDL_BUTTON_LEFT:
+					mouseLeftPressed = false;
+					break;
+				case SDL_BUTTON_RIGHT:
+					mouseRightPressed = false;
+					break;
+			}
+			break;
+		}
+		case SDL_MOUSEWHEEL:
+			if(mainEvent->wheel.timestamp > SDL_GetTicks() - 2) {
+				//CCFG::getMM()->getLE()->mouseWheel(mainEvent->wheel.y);
+			}
+			break;
+	}
+}
+
+
+void Application::InputPlayer(){
+
+}
+
+void Application::InputMenu(){
+    if(mainEvent->type == SDL_KEYDOWN){
+        CCFG::getMM()->setKey(mainEvent->key.keysym.sym);
+
+        switch(mainEvent->key.keysym.sym){
+            case SDLK_s: case SDLK_DOWN:
+                if(!keyMenuPressed){
+                    CCFG::getMM()->keyPressed(2);
+                    keyMenuPressed = true;
+                }
+                break;
+            case SDLK_w: case SDLK_UP:
+                if(!keyMenuPressed){
+                    CCFG::getMM()->keyPressed(0);
+                    keyMenuPressed = true;
+                }
+                break;
+            case SDLK_KP_ENTER: case SDLK_RETURN:
+                if(!keyMenuPressed) {
+                    CCFG::getMM()->enter();
+                    keyMenuPressed = true;
+                }
+                break;
+            case SDLK_ESCAPE:
+				if(!keyMenuPressed) {
+					CCFG::getMM()->escape();
+					keyMenuPressed = true;
+				}
+				break;
+            case SDLK_LEFT: case SDLK_d:
+				if(!keyMenuPressed) {
+					CCFG::getMM()->keyPressed(3);
+					keyMenuPressed = true;
+				}
+				break;
+			case SDLK_RIGHT: case SDLK_a:
+				if(!keyMenuPressed) {
+					CCFG::getMM()->keyPressed(1);
+					keyMenuPressed = true;
+				}
+				break;
+        }
+    }
+
+    if(mainEvent->type == SDL_KEYUP){
+        switch(mainEvent->key.keysym.sym){
+            case SDLK_s: case SDLK_DOWN: case SDLK_w: case SDLK_UP: case SDLK_KP_ENTER: case SDLK_RETURN: case SDLK_ESCAPE: case SDLK_a: case SDLK_RIGHT: case SDLK_LEFT: case SDLK_d:
+                keyMenuPressed = false;
+                break;
+        }
+    }
+}
+
+void Application::Update(){
+	CCFG::getMM()->Update();
+}
+
+void Application::Draw(){
+    
+}
+
