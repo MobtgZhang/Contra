@@ -3,10 +3,11 @@
 # define MAINMENU_H
 
 # include"CImg.h"
+# include"Menu.h"
 
-class MainMenu{
+class MainMenu:public Menu{
 private:
-    
+        
 public:
     MainMenu();
     ~MainMenu();

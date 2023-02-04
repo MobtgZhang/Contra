@@ -17,6 +17,7 @@ class MenuManager{
 private:
     MainMenu* oMainMenu;
     gameState currentGame;
+    CImg* activeOption;
 public:
     MenuManager();
     ~MenuManager();
@@ -26,6 +27,9 @@ public:
     void setBackgroundColor(SDL_Renderer* rR);
     void Draw(SDL_Renderer* rR);
     void Update();
+    
+    CImg* getActiveOption();
+    void setActiveOption(SDL_Renderer* rR);
 };
 
 # endif

@@ -45,7 +45,7 @@ Application::Application(){
     // 加载地图文件
     
     // 显示界面，
-
+    CCFG::getMM()->setActiveOption(m_renderer);
     CCFG::getLogo()->setImg("contra",m_renderer);
 
 

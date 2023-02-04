@@ -17,6 +17,8 @@ Text::Text(void) {
 	this->fontSize = 16;
 	this->extraLeft = 0;
 	this->nextExtraLeft = 0;
+
+	this->FONT = new CImg();
 }
 
 Text::~Text(void) {

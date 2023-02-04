@@ -2,6 +2,7 @@
 MenuManager::MenuManager(){
     this->currentGame = eMainMenu;
     this->oMainMenu = new MainMenu();
+    this->activeOption = NULL;
 }
 
 MenuManager::~MenuManager(){
@@ -36,3 +37,12 @@ void MenuManager::Draw(SDL_Renderer* rR){
 void MenuManager::Update(){
 
 }
+
+CImg* MenuManager::getActiveOption(){
+    return activeOption;
+}
+
+void MenuManager::setActiveOption(SDL_Renderer* rR) {
+	activeOption = new CImg("active_option", rR);
+}
+
