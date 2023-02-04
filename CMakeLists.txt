@@ -23,11 +23,11 @@ find_package(SDL2_Image REQUIRED)
 find_package(SDL2_Mixer REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${SDL2_MIXER_INCLUDE_DIR})
 
-file(COPY uContra/files DESTINATION .)
+file(COPY source/files DESTINATION .)
 
-include_directories(uContra)
+include_directories(source)
 
-file(GLOB_RECURSE uContra_SOURCES "uContra/*.cpp")
+file(GLOB_RECURSE uContra_SOURCES "source/*.cpp")
 add_executable (uContra ${uContra_SOURCES})
 
 target_link_libraries(uContra ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARY} ${SDL2_MIXER_LIBRARY})

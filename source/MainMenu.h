@@ -7,7 +7,10 @@
 
 class MainMenu:public Menu{
 private:
-        
+    bool selectLevel;
+    int activeLevel;
+    SDL_Rect rSelectLevel;
+    
 public:
     MainMenu();
     ~MainMenu();
