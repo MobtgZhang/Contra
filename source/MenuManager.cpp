@@ -35,7 +35,12 @@ void MenuManager::Draw(SDL_Renderer* rR){
 }
 
 void MenuManager::Update(){
-
+    switch (currentGameState){
+        case eMainMenu:
+			oMainMenu->Update();
+        default:
+            break;
+    }
 }
 
 CImg* MenuManager::getActiveOption(){

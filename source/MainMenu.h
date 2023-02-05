@@ -22,6 +22,7 @@ public:
     void escape();
     void enter();
     void Draw(SDL_Renderer* rR);
+    void Update();
     void updateActiveButton(int iDir);
 };
 

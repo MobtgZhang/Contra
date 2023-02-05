@@ -10,6 +10,8 @@ MainMenu::MainMenu(){
     this->lMO.push_back(new MenuOption("OPTIONS",256,4161));
     this->lMO.push_back(new MenuOption("ABOUT",256,448));
 
+    
+
     this->numOfMenuOptions = lMO.size();
     this->activeMenuOption = mainSTART;
     this->selectLevel = false;
@@ -24,7 +26,7 @@ MainMenu::~MainMenu(){
 void MainMenu::Draw(SDL_Renderer* rR){
     CCFG::getLogo()->Draw(rR,160,0);
     Menu::Draw(rR);
-    CCFG::getText()->Draw(rR, "MOBTGZHANG", 4, CCFG::GAME_HEIGHT - 4 - 8, 8, 0, 0, 0);
+    CCFG::getText()->Draw(rR, "MOBTGZHANG", 4, CCFG::GAME_HEIGHT - 4 - 8, 8, 255, 255, 255);
     if(selectLevel){
         SDL_SetRenderDrawBlendMode(rR,SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(rR,251,251,251,20);
@@ -94,4 +96,9 @@ void MainMenu::updateActiveButton(int iDir){
             break;
     }
     std::cout<<"The Level is "<<activeLevelID<<std::endl;
+}
+
+void MainMenu::Update(){
+
+    Menu::Update();
 }

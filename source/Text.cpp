@@ -49,7 +49,6 @@ void Text::Draw(SDL_Renderer* rR, std::string sText, int X, int Y, int fontSize,
 	this->fontSize = fontSize;
 	this->extraLeft = 0;
 	this->nextExtraLeft = 0;
-	
 	for(unsigned int i = 0; i < sText.size(); i++) {
 		SDL_SetTextureColorMod(FONT->getImg(), iR, iG, iB);
 		rCrop.x = getPos(sText.at(i));

@@ -48,7 +48,7 @@ Application::Application(){
     
     // 显示界面，
     CCFG::getMM()->setActiveOption(m_renderer);
-    //CCFG::getLogo()->setImg("contra",m_renderer);
+    CCFG::getLogo()->setImg("contra",m_renderer);
 
 
     // 加载并渲染主页面
