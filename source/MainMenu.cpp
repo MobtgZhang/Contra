@@ -26,7 +26,7 @@ MainMenu::~MainMenu(){
 void MainMenu::Draw(SDL_Renderer* rR){
     CCFG::getLogo()->Draw(rR,160,0);
     Menu::Draw(rR);
-    CCFG::getText()->Draw(rR, "MOBTGZHANG", 4, CCFG::GAME_HEIGHT - 4 - 8, 8, 255, 255, 255);
+    CCFG::getText()->Draw(rR, "MOBTGZHANG",CCFG::GAME_HEIGHT - 4 - 8, 8, 255, 255, 255);
     if(selectLevel){
         SDL_SetRenderDrawBlendMode(rR,SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(rR,251,251,251,20);
@@ -42,7 +42,7 @@ void MainMenu::Draw(SDL_Renderer* rR){
 		rSelectLevel.h += 2;
 		rSelectLevel.w += 2;
 
-        CCFG::getText()->Draw(rR, "SELECT LEVEL", rSelectLevel.x + rSelectLevel.w/2 - CCFG::getText()->getTextWidth("SELECT WORLD")/2, rSelectLevel.y + 16, 16, 255, 255, 255);
+        //CCFG::getText()->Draw(rR, "SELECT LEVEL", rSelectLevel.x + rSelectLevel.w/2 - CCFG::getText()->getTextWidth("SELECT WORLD")/2, rSelectLevel.y + 16, 16, 255, 255, 255);
 
 
         SDL_SetRenderDrawBlendMode(rR, SDL_BLENDMODE_NONE);

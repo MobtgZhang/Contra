@@ -24,7 +24,6 @@ public:
 
     virtual void Update();
     virtual void Draw(SDL_Renderer* rR);
-    // ----- 0 = TOP, 1 = RIGHT, 2 = BOTTOM, 3 = LEFT
 	virtual void updateActiveButton(int iDir);
 };
 

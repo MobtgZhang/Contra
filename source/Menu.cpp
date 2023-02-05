@@ -20,7 +20,6 @@ void Menu::Update(){
 
 }
 
-// ----- 0 = TOP, 1 = RIGHT, 2 = BOTTOM, 3 = LEFT
 void Menu::updateActiveButton(int iDir){
     switch(iDir){
         case iUP_ITEM:

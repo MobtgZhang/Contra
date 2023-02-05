@@ -1,38 +1,25 @@
 #pragma once
 
-#ifndef TEXT_H
-#define TEXT_H
-
-#include "CImg.h"
+# ifndef TEXT_H
+# define TEXT_H
+# include<SDL2/SDL_ttf.h>
+# include<string>
+# include<iostream>
 
 class Text
 {
 private:
-	CImg* FONT;
-
-	SDL_Rect rCrop;
-	SDL_Rect rRect;
-
 	int fontSize;
-	int extraLeft, nextExtraLeft;
 
-	// ----- METHODS
-	int getPos(int iChar);
-	void checkExtra(int iChar);
+	TTF_Font *ttfFont;
+	SDL_Texture* tText;
+	SDL_Rect rRect;
 public:
-	Text(void);
-	~Text(void);
+	Text(int fontSize=16);
+	~Text();
+	void Draw(SDL_Renderer* rR, std::string sText, int X, int Y,int iR=255,int iG=255, int iB=255);
+	void setFont(int fontSize,std::string fileName="files/fonts/simhei.ttf");
 
-	void Draw(SDL_Renderer* rR, std::string sText, int X, int Y, int fontSize = 16);
-	void Draw(SDL_Renderer* rR, std::string sText, int X, int Y, int fontSize, int iR, int iG, int iB);
-	void DrawCenterX(SDL_Renderer* rR, std::string sText, int Y, int fontSize = 16, int iR = 255, int iG = 255, int iB = 255);
-	void Draw(SDL_Renderer* rR, std::string sText, int X, int Y, int iWidth, int iHeight);
-	void DrawWS(SDL_Renderer* rR, std::string sText, int X, int Y,int iR, int iG, int iB, int fontSize = 16);
-
-	int getTextWidth(std::string sText, int fontSize = 16);
-
-	// ----- SET FONT IMG
-	void setFont(SDL_Renderer* rR, std::string fileName);
 };
 
 #endif
