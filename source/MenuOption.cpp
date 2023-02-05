@@ -3,7 +3,7 @@
 MenuOption::MenuOption(std::string sText,int XPos,int YPos){
     this->sText = sText;
     this->iXPos = XPos;
-    this->iYPos = iYPos;
+    this->iYPos = YPos;
 }
 
 MenuOption::~MenuOption(){
@@ -23,5 +23,5 @@ int MenuOption::getXPos(){
 }
 
 int MenuOption::getYPos(){
-    return this->iXPos;
+    return this->iYPos;
 }

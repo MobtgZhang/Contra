@@ -2,6 +2,7 @@
 # ifndef MENUMANAGER_H
 # define MENUMANAGER_H
 # include "MainMenu.h"
+# include "OptionsMenu.h"
 # include "Text.h"
 
 class MenuManager{
@@ -33,6 +34,7 @@ public:
     void escape();
 private:
     MainMenu* oMainMenu;
+    OptionsMenu* oOptionsMenu;
     gameState currentGameState;
     CImg* activeOption;
 };

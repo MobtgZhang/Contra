@@ -6,9 +6,9 @@
 # include<iostream>
 
 MainMenu::MainMenu(){
-    this->lMO.push_back(new MenuOption("START",256,384));
-    this->lMO.push_back(new MenuOption("OPTIONS",256,4161));
-    this->lMO.push_back(new MenuOption("ABOUT",256,448));
+    this->lMO.push_back(new MenuOption("START",256,288));
+    this->lMO.push_back(new MenuOption("OPTIONS",256,320));
+    this->lMO.push_back(new MenuOption("ABOUT",256,352));
 
     
 
@@ -74,6 +74,11 @@ void MainMenu::enter(){
 
 void MainMenu::updateActiveButton(int iDir){
     switch(iDir){
+        case iUP_ITEM:case iDOWN_ITEM:
+            if(!selectLevel){
+                Menu::updateActiveButton(iDir);
+            }
+            break;
         case iLEFT_ITEM:
             if(selectLevel){
                 if(activeLevelID >0){
@@ -95,7 +100,7 @@ void MainMenu::updateActiveButton(int iDir){
             std::cout<<"Push the right"<<std::endl;
             break;
     }
-    std::cout<<"The Level is "<<activeLevelID<<std::endl;
+    std::cout<<"The Level,activeMenuOption is "<<activeLevelID<<","<<activeMenuOption<<std::endl;
 }
 
 void MainMenu::Update(){
