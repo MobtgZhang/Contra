@@ -14,6 +14,8 @@ bool Application::keyA = false;
 bool Application::keyB = false;
 bool Application::keyX = false;
 bool Application::keyY = false;
+//其他按键
+bool Application::keyMenuPressed = false;
 
 Application::Application(){
     this->quitGame = false;
@@ -111,18 +113,79 @@ void Application::mainloop(){
 //按键信息
 void Application::Input(){
     switch(CCFG::getMM()->getGameState()){
-        case eMainMenu:
+        case MenuManager::eMainMenu:
+            InputMenu();
             break;
-        case eAbout:
+        case MenuManager::eAbout:
             break;
-        case ePause:
+        case MenuManager::ePause:
             break;
-        case eGameLoading:
+        case MenuManager::eGameLoading:
             break;
-        case eGame:
+        case MenuManager::eGame:
             break;
-        case eOptions:
+        case MenuManager::eOptions:
             break;
+    }
+}
+//菜单输入
+void Application::InputMenu(){
+    if(mainEvent->type == SDL_KEYDOWN){
+        switch(mainEvent->key.keysym.sym){
+            //按下了向下的按键
+            case SDLK_s: case SDLK_DOWN:
+                if(!keyMenuPressed){
+                    CCFG::getMM()->keyPressed(Menu::iDOWN_ITEM);
+                    keyMenuPressed = true;
+                }
+                break;
+            //按下的向上的按键
+            case SDLK_w: case SDLK_UP:
+                if(!keyMenuPressed){
+                    CCFG::getMM()->keyPressed(Menu::iUP_ITEM);
+                    keyMenuPressed = true;
+                }
+                break;
+            //按下回车键
+            case SDLK_KP_ENTER: case SDLK_RETURN:
+                if(!keyMenuPressed){
+                    CCFG::getMM()->enter();
+                    keyMenuPressed = true;
+                }
+                break;
+            //按下ESC按键
+            case SDLK_ESCAPE:
+                if(!keyMenuPressed){
+                    CCFG::getMM()->escape();
+                    keyMenuPressed = true;
+                }
+                break;
+            //按下向左按键
+            case SDLK_LEFT: case SDLK_d:
+                if(!keyMenuPressed){
+                    CCFG::getMM()->keyPressed(Menu::iLEFT_ITEM);
+                    keyMenuPressed = true;
+                }
+                break;
+            //按下向右按键
+            case SDLK_RIGHT: case SDLK_a:
+                if(!keyMenuPressed){
+                    CCFG::getMM()->keyPressed(Menu::iRIGHT_ITEM);
+                    keyMenuPressed = true;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    if(mainEvent->type == SDL_KEYUP){
+        switch(mainEvent->key.keysym.sym) {
+			case SDLK_s: case SDLK_DOWN: case SDLK_w: case SDLK_UP: case SDLK_KP_ENTER: case SDLK_RETURN: case SDLK_ESCAPE: case SDLK_a: case SDLK_RIGHT: case SDLK_LEFT: case SDLK_d:
+				keyMenuPressed = false;
+				break;
+			default:
+				break;
+		}
     }
 }
 //绘制

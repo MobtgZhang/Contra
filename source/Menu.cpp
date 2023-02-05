@@ -19,3 +19,24 @@ void Menu::Draw(SDL_Renderer* rR){
 void Menu::Update(){
 
 }
+
+// ----- 0 = TOP, 1 = RIGHT, 2 = BOTTOM, 3 = LEFT
+void Menu::updateActiveButton(int iDir){
+    switch(iDir){
+        case iDOWN_ITEM:
+            if(activeMenuOption - 1<0){
+                activeMenuOption = numOfMenuOptions - 1;
+            }else{
+                --activeMenuOption;
+            }
+        case iUP_ITEM:
+            if(activeMenuOption + 1>=numOfMenuOptions){
+                activeMenuOption = 0;
+            }else{
+                ++activeMenuOption;
+            }
+            break;
+        default:
+            break;
+    }
+}

@@ -8,13 +8,21 @@
 class MainMenu:public Menu{
 private:
     bool selectLevel;
-    int activeLevel;
+    int activeLevelID;
     SDL_Rect rSelectLevel;
-    
+    enum MainMenuState{
+        mainSTART,
+        mainABOUT,
+        mainOPTIONS
+    };
 public:
     MainMenu();
     ~MainMenu();
+
+    void escape();
+    void enter();
     void Draw(SDL_Renderer* rR);
+    void updateActiveButton(int iDir);
 };
 
 # endif

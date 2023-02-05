@@ -19,7 +19,7 @@ private:
     static bool keyLeftPressed,keyRightPressed;
     static bool keyUp,keyDown,keyLeft,keyRight;
     static bool keyA,keyB,keyX,keyY;
-
+    static bool keyMenuPressed;
 public:
     Application();
     ~Application();
@@ -27,6 +27,7 @@ public:
     void Draw();
     void Update();
     void Input();
+    void InputMenu();
 };
 
 # endif

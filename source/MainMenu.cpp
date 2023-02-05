@@ -3,13 +3,17 @@
 # include "CFG.h"
 # include "Application.h"
 
+# include<iostream>
+
 MainMenu::MainMenu(){
     this->lMO.push_back(new MenuOption("START",256,384));
     this->lMO.push_back(new MenuOption("OPTIONS",256,4161));
     this->lMO.push_back(new MenuOption("ABOUT",256,448));
 
     this->numOfMenuOptions = lMO.size();
-    this->activeMenuOption = 0;
+    this->activeMenuOption = mainSTART;
+    this->selectLevel = false;
+    this->activeLevelID = 0;
 
 }
 
@@ -44,3 +48,50 @@ void MainMenu::Draw(SDL_Renderer* rR){
     }
 }
 
+void MainMenu::escape(){
+    selectLevel = false;
+}
+
+void MainMenu::enter(){
+    switch(activeMenuOption){
+        case mainSTART:
+            if(!selectLevel){
+                selectLevel = true;
+            }else{
+                //这里进入到某一个关卡当中
+            }
+            break;
+        case mainOPTIONS:
+            //选项菜单
+            break;
+        case mainABOUT:
+            //关于菜单
+            break;
+    }
+}
+
+void MainMenu::updateActiveButton(int iDir){
+    switch(iDir){
+        case iLEFT_ITEM:
+            if(selectLevel){
+                if(activeLevelID >0){
+                    --activeLevelID;
+                }else{
+                    activeLevelID = 7;
+                }
+            }
+            std::cout<<"Push the left"<<std::endl;
+            break;
+        case iRIGHT_ITEM:
+            if(selectLevel){
+                if(activeLevelID < 7) {
+					++activeLevelID;
+				} else {
+					activeLevelID = 0;
+				}
+            }
+            std::cout<<"Push the right"<<std::endl;
+            break;
+    }
+    std::cout<<"The Level is "<<activeLevelID<<std::endl;
+}

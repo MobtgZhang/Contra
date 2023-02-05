@@ -4,21 +4,18 @@
 # include "MainMenu.h"
 # include "Text.h"
 
-enum gameState{
+class MenuManager{
+
+public:
+
+    enum gameState{
         eMainMenu,
         eGameLoading,
         eGame,
         eAbout,
         eOptions,
         ePause
-};
-
-class MenuManager{
-private:
-    MainMenu* oMainMenu;
-    gameState currentGame;
-    CImg* activeOption;
-public:
+    };
     MenuManager();
     ~MenuManager();
 
@@ -30,6 +27,14 @@ public:
     
     CImg* getActiveOption();
     void setActiveOption(SDL_Renderer* rR);
+
+    void keyPressed(int iDir);
+    void enter();
+    void escape();
+private:
+    MainMenu* oMainMenu;
+    gameState currentGameState;
+    CImg* activeOption;
 };
 
 # endif
