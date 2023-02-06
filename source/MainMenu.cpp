@@ -76,9 +76,15 @@ void MainMenu::enter(){
         case mainOPTIONS:
             //选项菜单
             CCFG::getMM()->getOptionsMenu()->setEscapeToMainMenu(true);
+            CCFG::getMM()->resetGameState(CCFG::getMM()->eOptions);
+            CCFG::getMM()->getOptionsMenu()->updateVolumeRect();
+            CCFG::getMM()->setGameState(CCFG::getMM()->eOptions);
             break;
         case mainABOUT:
             //关于菜单
+            printf("HERE IS THE MAINABOUT.\n");
+            break;
+        default:
             break;
     }
 }

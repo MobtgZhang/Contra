@@ -22,6 +22,7 @@ public:
 
     gameState getGameState();
     void setGameState(gameState state);
+    void resetGameState(gameState state);
     void setBackgroundColor(SDL_Renderer* rR);
     void Draw(SDL_Renderer* rR);
     void Update();

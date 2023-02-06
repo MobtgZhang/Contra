@@ -16,6 +16,10 @@ void Menu::Draw(SDL_Renderer* rR){
     CCFG::getMM()->getActiveOption()->Draw(rR,lMO[activeMenuOption]->getXPos()-48,lMO[activeMenuOption]->getYPos());
 }
 
+void Menu::setactiveMenuOption(int num_ID){
+    this->activeMenuOption = num_ID;
+}
+
 void Menu::Update(){
 
 }

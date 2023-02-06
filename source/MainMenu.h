@@ -10,12 +10,13 @@ private:
     bool selectLevel;
     int activeLevelID;
     SDL_Rect rSelectLevel;
+    
+public:
     enum MainMenuState{
         mainSTART,
+        mainOPTIONS,
         mainABOUT,
-        mainOPTIONS
     };
-public:
     MainMenu();
     ~MainMenu();
 

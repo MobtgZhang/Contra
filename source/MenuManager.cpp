@@ -2,6 +2,7 @@
 MenuManager::MenuManager(){
     this->currentGameState = eMainMenu;
     this->oMainMenu = new MainMenu();
+    this->oOptionsMenu = new OptionsMenu();
     this->activeOption = NULL;
 }
 
@@ -31,6 +32,8 @@ void MenuManager::Draw(SDL_Renderer* rR){
     switch(currentGameState){
         case eMainMenu:
             oMainMenu->Draw(rR);
+        default:
+            break;
     }
 }
 
@@ -104,5 +107,21 @@ void MenuManager::escape() {
 
 OptionsMenu* MenuManager::getOptionsMenu(){
     return oOptionsMenu;
+}
+
+void MenuManager::resetGameState(gameState state){
+    switch (state){
+    case eMainMenu:
+        oMainMenu->setactiveMenuOption(0);
+        break;
+    case eOptions:
+        oOptionsMenu->setactiveMenuOption(0);
+        break;
+    case ePause:
+        //暂停按钮选项
+        break;
+    default:
+        break;
+    }
 }
 
