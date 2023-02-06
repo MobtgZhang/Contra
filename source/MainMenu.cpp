@@ -66,14 +66,14 @@ void MainMenu::escape(){
 
 void MainMenu::enter(){
     switch(activeMenuOption){
-        case mainSTART:
+        case MainMenu::mainSTART:
             if(!selectLevel){
                 selectLevel = true;
             }else{
                 //这里进入到某一个关卡当中
             }
             break;
-        case mainOPTIONS:
+        case MainMenu::mainOPTIONS:
             //选项菜单
             CCFG::getMM()->getOptionsMenu()->setEscapeToMainMenu(true);
             CCFG::getMM()->resetGameState(CCFG::getMM()->eOptions);
@@ -81,7 +81,7 @@ void MainMenu::enter(){
             CCFG::getMM()->setGameState(CCFG::getMM()->eOptions);
             printf("HERE IS THE MAINOPTIONS.\n");
             break;
-        case mainABOUT:
+        case MainMenu::mainABOUT:
             //关于菜单
             printf("HERE IS THE MAINABOUT.\n");
             break;

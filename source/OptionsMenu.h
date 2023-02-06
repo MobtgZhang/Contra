@@ -15,11 +15,30 @@ private:
 
     bool escapeToMainMenu;
 public:
+    enum OptionMenuState{
+        optionVOLUME,
+        optionLEFT,
+        optionDOWN,
+        optionRIGHT,
+        optionUP,
+        optionA,
+        optionB,
+        optionX,
+        optionY,
+        optionMOVEBACKWARD,
+        optionMAINMENU
+    };
     OptionsMenu();
     ~OptionsMenu();
 
     void escape();
+    void enter();
     void setEscapeToMainMenu(bool escapeToMainMenu);
     void updateVolumeRect();
+
+    void updateActiveButton(int iDir);
+    void Draw(SDL_Renderer* rR);
+    void Update();
+
 };
 # endif

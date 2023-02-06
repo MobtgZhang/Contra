@@ -1,4 +1,5 @@
 # include "MenuManager.h"
+
 MenuManager::MenuManager(){
     this->currentGameState = eMainMenu;
     this->oMainMenu = new MainMenu();
@@ -32,6 +33,18 @@ void MenuManager::Draw(SDL_Renderer* rR){
     switch(currentGameState){
         case eMainMenu:
             oMainMenu->Draw(rR);
+            break;
+        case eOptions:
+            oOptionsMenu->Draw(rR);
+            break;
+        case eAbout:
+            break;
+        case ePause:
+            break;
+        case eGameLoading:
+            break;
+        case eGame:
+            break;
         default:
             break;
     }
@@ -41,6 +54,17 @@ void MenuManager::Update(){
     switch (currentGameState){
         case eMainMenu:
 			oMainMenu->Update();
+        case eOptions:
+            oOptionsMenu->Update();
+            break;
+        case eAbout:
+            break;
+        case ePause:
+            break;
+        case eGameLoading:
+            break;
+        case eGame:
+            break;
         default:
             break;
     }
@@ -59,6 +83,11 @@ void MenuManager::keyPressed(int iDir){
         case eMainMenu:
             oMainMenu->updateActiveButton(iDir);
             break;
+        case eOptions:
+            oOptionsMenu->updateActiveButton(iDir);
+            break;
+        case ePause:
+            break;
         default:
             break;
     }
@@ -76,7 +105,7 @@ void MenuManager::enter(){
 			//oAboutMenu->enter();
 			break;
 		case eOptions:
-			//oOptionsMenu->enter();
+			oOptionsMenu->enter();
 			break;
 		case ePause:
 			//oPauseMenu->enter();

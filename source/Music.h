@@ -70,6 +70,7 @@ public:
 
     // 播放音乐
     void PlayMusic();
+    void PlayChunk(eChunk chunkID);
 
     Mix_Music* loadMusic(std::string fileName);
     Mix_Chunk* loadChunk(std::string fileName);

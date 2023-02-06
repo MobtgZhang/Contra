@@ -90,3 +90,8 @@ void Music::PlayMusic(){
 
 }
 
+void Music::PlayChunk(eChunk chunkID){
+    Mix_VolumeChunk(vChunk[chunkID],iVolume);
+    Mix_PlayChannel(-1,vChunk[chunkID],0);
+}
+

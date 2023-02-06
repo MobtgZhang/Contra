@@ -51,7 +51,6 @@ Application::Application(){
     CCFG::getLogo()->setImg("contra",m_renderer);
     CCFG::getText()->setFont(m_renderer,"font");
 
-
     // 加载并渲染主页面
 
     //其他部分的初始化
@@ -116,19 +115,10 @@ void Application::mainloop(){
 //按键信息
 void Application::Input(){
     switch(CCFG::getMM()->getGameState()){
-        case MenuManager::eMainMenu:
+        case MenuManager::eGameLoading:case MenuManager::eGame:
+            break;
+        default:
             InputMenu();
-            break;
-        case MenuManager::eAbout:
-            break;
-        case MenuManager::ePause:
-            break;
-        case MenuManager::eGameLoading:
-            break;
-        case MenuManager::eGame:
-            break;
-        case MenuManager::eOptions:
-            break;
     }
 }
 //菜单输入
