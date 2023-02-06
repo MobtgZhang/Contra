@@ -49,6 +49,7 @@ Application::Application(){
     // 显示界面，
     CCFG::getMM()->setActiveOption(m_renderer);
     CCFG::getLogo()->setImg("contra",m_renderer);
+    CCFG::getText()->setFont(m_renderer,"font");
 
 
     // 加载并渲染主页面
@@ -93,7 +94,7 @@ void Application::mainloop(){
         Draw();
         //更新
         Update();
-
+        
         //FPS 显示设置
         if(SDL_GetTicks()-1000>=lFPSTime){
             lFPSTime = SDL_GetTicks();

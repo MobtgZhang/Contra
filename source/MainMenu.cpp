@@ -9,9 +9,12 @@ MainMenu::MainMenu(){
     this->lMO.push_back(new MenuOption("START",256,288));
     this->lMO.push_back(new MenuOption("OPTIONS",256,320));
     this->lMO.push_back(new MenuOption("ABOUT",256,352));
-
     
-
+    rSelectLevel.x = 122;
+	rSelectLevel.y = 280;
+	rSelectLevel.w = 306;
+	rSelectLevel.h = 72;
+    
     this->numOfMenuOptions = lMO.size();
     this->activeMenuOption = mainSTART;
     this->selectLevel = false;
@@ -26,10 +29,11 @@ MainMenu::~MainMenu(){
 void MainMenu::Draw(SDL_Renderer* rR){
     CCFG::getLogo()->Draw(rR,160,0);
     Menu::Draw(rR);
-    CCFG::getText()->Draw(rR, "MOBTGZHANG",CCFG::GAME_HEIGHT - 4 - 8, 8, 255, 255, 255);
+    
+	CCFG::getText()->Draw(rR, "AUTHOR:MOBTGZHANG", 5, CCFG::GAME_HEIGHT - 16, 8, 255, 255, 255);
     if(selectLevel){
         SDL_SetRenderDrawBlendMode(rR,SDL_BLENDMODE_BLEND);
-        SDL_SetRenderDrawColor(rR,251,251,251,20);
+        SDL_SetRenderDrawColor(rR,251,251,251,100);
         SDL_RenderFillRect(rR, &rSelectLevel);
 		SDL_SetRenderDrawColor(rR, 255, 255, 255, 255);
         rSelectLevel.x += 1;
@@ -42,7 +46,7 @@ void MainMenu::Draw(SDL_Renderer* rR){
 		rSelectLevel.h += 2;
 		rSelectLevel.w += 2;
 
-        //CCFG::getText()->Draw(rR, "SELECT LEVEL", rSelectLevel.x + rSelectLevel.w/2 - CCFG::getText()->getTextWidth("SELECT WORLD")/2, rSelectLevel.y + 16, 16, 255, 255, 255);
+        CCFG::getText()->Draw(rR, "SELECT LEVEL", rSelectLevel.x + rSelectLevel.w/2 - CCFG::getText()->getTextWidth("SELECT LEVEL")/2, rSelectLevel.y + 16, 16, 255, 255, 255);
 
 
         SDL_SetRenderDrawBlendMode(rR, SDL_BLENDMODE_NONE);
