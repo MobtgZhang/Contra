@@ -101,3 +101,8 @@ void MenuManager::escape() {
             break;
 	}
 }
+
+OptionsMenu* MenuManager::getOptionsMenu(){
+    return oOptionsMenu;
+}
+

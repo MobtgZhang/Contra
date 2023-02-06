@@ -33,7 +33,7 @@ void MainMenu::Draw(SDL_Renderer* rR){
 	CCFG::getText()->Draw(rR, "AUTHOR:MOBTGZHANG", 5, CCFG::GAME_HEIGHT - 16, 8, 255, 255, 255);
     if(selectLevel){
         SDL_SetRenderDrawBlendMode(rR,SDL_BLENDMODE_BLEND);
-        SDL_SetRenderDrawColor(rR,251,251,251,100);
+        SDL_SetRenderDrawColor(rR,4,4,4,235);
         SDL_RenderFillRect(rR, &rSelectLevel);
 		SDL_SetRenderDrawColor(rR, 255, 255, 255, 255);
         rSelectLevel.x += 1;
@@ -47,9 +47,15 @@ void MainMenu::Draw(SDL_Renderer* rR){
 		rSelectLevel.w += 2;
 
         CCFG::getText()->Draw(rR, "SELECT LEVEL", rSelectLevel.x + rSelectLevel.w/2 - CCFG::getText()->getTextWidth("SELECT LEVEL")/2, rSelectLevel.y + 16, 16, 255, 255, 255);
+        for(int i = 0, extraX = 0; i < 8; i++) {
+			if(i == activeLevelID) {
+				CCFG::getText()->Draw(rR, std::to_string(i + 1) , rSelectLevel.x + 16*(i + 1) + 16*i + extraX, rSelectLevel.y + 16 + 24, 16, 255, 255, 255);
+			} else {
+				CCFG::getText()->Draw(rR, std::to_string(i + 1), rSelectLevel.x + 16*(i + 1) + 16*i + extraX, rSelectLevel.y + 16 + 24, 16, 90, 90, 90);
+			}
+		}
 
-
-        SDL_SetRenderDrawBlendMode(rR, SDL_BLENDMODE_NONE);
+		SDL_SetRenderDrawBlendMode(rR, SDL_BLENDMODE_NONE);
 		//Application::getMap()->setBackgroundColor(rR);
     }
 }
@@ -69,6 +75,7 @@ void MainMenu::enter(){
             break;
         case mainOPTIONS:
             //选项菜单
+            CCFG::getMM()->getOptionsMenu()->setEscapeToMainMenu(true);
             break;
         case mainABOUT:
             //关于菜单
@@ -91,7 +98,6 @@ void MainMenu::updateActiveButton(int iDir){
                     activeLevelID = 7;
                 }
             }
-            std::cout<<"Push the left"<<std::endl;
             break;
         case iRIGHT_ITEM:
             if(selectLevel){
@@ -101,10 +107,8 @@ void MainMenu::updateActiveButton(int iDir){
 					activeLevelID = 0;
 				}
             }
-            std::cout<<"Push the right"<<std::endl;
             break;
     }
-    std::cout<<"The Level,activeMenuOption is "<<activeLevelID<<","<<activeMenuOption<<std::endl;
 }
 
 void MainMenu::Update(){

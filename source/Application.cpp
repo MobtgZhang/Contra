@@ -96,6 +96,8 @@ void Application::mainloop(){
         Update();
         
         //FPS 显示设置
+        CCFG::getText()->Draw(m_renderer, "FPS:" + std::to_string(iNumOfFPS), CCFG::GAME_WIDTH - CCFG::getText()->getTextWidth("FPS:" + std::to_string(iNumOfFPS), 8) - 8, 5, 8);
+        
         if(SDL_GetTicks()-1000>=lFPSTime){
             lFPSTime = SDL_GetTicks();
             iNumOfFPS = iFPS;

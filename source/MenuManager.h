@@ -32,6 +32,7 @@ public:
     void keyPressed(int iDir);
     void enter();
     void escape();
+    OptionsMenu* getOptionsMenu();
 private:
     MainMenu* oMainMenu;
     OptionsMenu* oOptionsMenu;
