@@ -67,6 +67,10 @@ public:
 
     eMusic currentMusic;
 
+
+    // 播放音乐
+    void PlayMusic();
+
     Mix_Music* loadMusic(std::string fileName);
     Mix_Chunk* loadChunk(std::string fileName);
 

@@ -79,6 +79,7 @@ void MainMenu::enter(){
             CCFG::getMM()->resetGameState(CCFG::getMM()->eOptions);
             CCFG::getMM()->getOptionsMenu()->updateVolumeRect();
             CCFG::getMM()->setGameState(CCFG::getMM()->eOptions);
+            printf("HERE IS THE MAINOPTIONS.\n");
             break;
         case mainABOUT:
             //关于菜单

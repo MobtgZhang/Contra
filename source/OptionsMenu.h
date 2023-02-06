@@ -17,6 +17,8 @@ private:
 public:
     OptionsMenu();
     ~OptionsMenu();
+
+    void escape();
     void setEscapeToMainMenu(bool escapeToMainMenu);
     void updateVolumeRect();
 };

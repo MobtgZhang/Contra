@@ -86,3 +86,7 @@ int Music::getVolume(){
     return this->iVolume;
 }
 
+void Music::PlayMusic(){
+
+}
+

@@ -92,7 +92,7 @@ void MenuManager::escape() {
 			//oAboutMenu->enter();
 			break;
 		case eOptions:
-			//oOptionsMenu->escape();
+			oOptionsMenu->escape();
 			break;
 		case ePause:
 			//oPauseMenu->escape();
