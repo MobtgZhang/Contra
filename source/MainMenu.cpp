@@ -83,12 +83,11 @@ void MainMenu::enter(){
             }else{
                 selectLevel = false;
                 CCFG::getMusic()->PlayMusic(CCFG::getMusic()->mTITLE,1);
-                CCFG::getMM()->getLoadingMenu()->updateTime();
                 CCFG::getMM()->getMainMenu()->setTwinkle(true);
                 CCFG::getMM()->getMainMenu()->updateTime();
                 //这里进入到某一个关卡当中
                 // setworld etc.
-                CCFG::getMM()->getLoadingMenu()->setLoadingType(false);
+                CCFG::getMM()->getLoadingMenu()->setLoadingType(true);
             }
             break;
         case MainMenu::mainOPTIONS:
@@ -149,7 +148,9 @@ void MainMenu::Update(){
         if(SDL_GetTicks() - this->iTime>=6000 && CCFG::getMM()->getGameState()==CCFG::getMM()->eMainMenu){
             CCFG::getMM()->setGameState(CCFG::getMM()->eGameLoading);
             CCFG::getMM()->getMainMenu()->setTwinkle(false);
+            CCFG::getMM()->getLoadingMenu()->updateTime();
         }
     }
     Menu::Update();
 }
+

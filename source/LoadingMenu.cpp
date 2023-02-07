@@ -25,28 +25,19 @@ void LoadingMenu::updateTime(){
     this->iTime = SDL_GetTicks();
 }
 
-void LoadingMenu::Update() {
-    if(loadingType){
-        CCFG::getMusic()->StopMusic();
-    }else{
-        //CCFG::getMusic()->PlayMusic(Music::mGAMEOVER,1);
-    }
-    /*
+void LoadingMenu::Update(){
 	if(SDL_GetTicks() >= iTime + 2500 + (loadingType ? 0 : 2750)) {
 		if(loadingType) {
-			if(!Application::getMap()->getInEvent()) {
-				Application::getMap()->setSpawnPoint();
-				Application::getMap()->loadLVL();
-			}
-			CCFG::getMM()->setViewID(CCFG::getMM()->eGame);
-			CCFG::getMusic()->changeMusic(true, true);
+			CCFG::getMM()->setGameState(CCFG::getMM()->eGame);
+            CCFG::getMusic()->PlayMusic(Music::mJUNGLE);
+			//CCFG::getMusic()->changeMusic(true, true);
 		} else {
 			//Application::getMap()->resetGameData();
 			CCFG::getMM()->setGameState(CCFG::getMM()->eMainMenu);
 		}
 	} else {
 		CCFG::getMusic()->StopMusic();
-	}*/
+	}
 	//Application::getMap()->UpdateBlocks();
 }
 

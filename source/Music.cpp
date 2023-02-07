@@ -97,6 +97,11 @@ void Music::PlayMusic(eMusic musicID,int loops){
     }
 }
 
+void Music::changeMusic(){
+
+}
+
+
 void Music::StopMusic(){
     if(!musicStopped){
         Mix_HaltMusic();
