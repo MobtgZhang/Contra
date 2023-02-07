@@ -8,7 +8,9 @@ LoadingMenu::LoadingMenu(){
     this->lMO.push_back(new MenuOption("CONTINUE",354,298));
     this->lMO.push_back(new MenuOption("END",354,346));
     this->numOfMenuOptions = 2;
-    //CCFG::getText()->Draw(rR, "GAMEOVER", 306, 250);
+
+    this->twinkleTime = SDL_GetTicks();
+    this->active_draw = false;
 }
 
 LoadingMenu::~LoadingMenu(){
@@ -50,18 +52,26 @@ void LoadingMenu::Update() {
 
 
 void LoadingMenu::Draw(SDL_Renderer* rR){
+    if(SDL_GetTicks()-this->twinkleTime> 250){
+        active_draw = !active_draw;
+        this->twinkleTime = SDL_GetTicks();
+    }
     if(loadingType) {
 		//Application::getMap()->DrawGameLayout(rR);
-		//这里显示的是哪一个玩家，因为只有一个玩家显示1P
+		//1P得分值
         CCFG::getText()->Draw(rR, "1P", 82, 82);
-        //得分值
-        CCFG::getText()->Draw(rR, "0", 286, 82);
+        
+        if(active_draw){
+            CCFG::getText()->Draw(rR, "0", 286, 82);
+        }
 		//生命值
         CCFG::getText()->Draw(rR, "REST", 82, 115);
         CCFG::getText()->Draw(rR, "3", 216, 115);
         //HI值
         CCFG::getText()->Draw(rR, "HI", 256, 115);
-        CCFG::getText()->Draw(rR, "20000", 364, 115);
+        if(active_draw){
+            CCFG::getText()->Draw(rR, "20000", 364, 115);
+        }
         //场景名字
         CCFG::getText()->Draw(rR, "STAGE 1", 306, 250);
         CCFG::getText()->Draw(rR, "JUNGLE", 306, 282);
@@ -70,10 +80,14 @@ void LoadingMenu::Draw(SDL_Renderer* rR){
 		//这里显示的是哪一个玩家，因为只有一个玩家显示1P
         CCFG::getText()->Draw(rR, "1P", 82, 82);
         //得分值
-        CCFG::getText()->Draw(rR, "0", 286, 82);
+        if(active_draw){
+            CCFG::getText()->Draw(rR, "0", 286, 82);
+        }
         //HI值
         CCFG::getText()->Draw(rR, "HI", 256, 115);
-        CCFG::getText()->Draw(rR, "20000", 364, 115);
+        if(active_draw){
+            CCFG::getText()->Draw(rR, "20000", 364, 115);
+        }
         // 显示游戏结束和选项
         CCFG::getText()->Draw(rR, "GAMEOVER", 306, 250);
         Menu::Draw(rR);
