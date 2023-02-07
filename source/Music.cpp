@@ -86,6 +86,16 @@ int Music::getVolume(){
     return this->iVolume;
 }
 
+void Music::PlayMusic(){
+    if(currentMusic!=mNOTHING){
+        Mix_PlayMusic(vMusic[currentMusic-1],-1);
+        musicStopped = false;
+    }else{
+        StopMusic();
+    }
+}
+
+
 void Music::PlayMusic(eMusic musicID,int loops){
     if(musicID!=mNOTHING){
         Mix_PlayMusic(vMusic[musicID-1],loops);
@@ -101,6 +111,17 @@ void Music::changeMusic(){
 
 }
 
+void Music::PauseMusic(){
+    printf("Pause the Music!\n");
+    if(Mix_PausedMusic()){
+        Mix_ResumeMusic();
+        musicStopped = false;
+    }else{
+        Mix_PausedMusic();
+        musicStopped = true;
+    }
+}
+
 
 void Music::StopMusic(){
     if(!musicStopped){
@@ -108,7 +129,6 @@ void Music::StopMusic(){
         musicStopped = true;
     }
 }
-
 
 void Music::PlayChunk(eChunk chunkID){
     Mix_VolumeChunk(vChunk[chunkID],iVolume);

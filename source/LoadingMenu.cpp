@@ -29,7 +29,7 @@ void LoadingMenu::Update(){
 	if(SDL_GetTicks() >= iTime + 2500 + (loadingType ? 0 : 2750)) {
 		if(loadingType) {
 			CCFG::getMM()->setGameState(CCFG::getMM()->eGame);
-            CCFG::getMusic()->PlayMusic(Music::mJUNGLE);
+            //CCFG::getMusic()->PlayMusic(Music::mJUNGLE);
 			//CCFG::getMusic()->changeMusic(true, true);
 		} else {
 			//Application::getMap()->resetGameData();

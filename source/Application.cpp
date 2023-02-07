@@ -17,6 +17,9 @@ bool Application::keyY = false;
 //其他按键
 bool Application::keyMenuPressed = false;
 
+//游戏退出
+bool Application::quitGame = false;
+
 Application::Application(){
     this->quitGame = false;
     this->iFPS = 0;
@@ -116,6 +119,7 @@ void Application::mainloop(){
 void Application::Input(){
     switch(CCFG::getMM()->getGameState()){
         case MenuManager::eGame:
+            InputLayer();
             break;
         default:
             InputMenu();
@@ -182,6 +186,59 @@ void Application::InputMenu(){
 		}
     }
 }
+
+//加载玩家信息
+
+void Application::InputLayer(){
+    if(mainEvent->type == SDL_WINDOWEVENT){
+        switch(mainEvent->window.event){
+            case SDL_WINDOWEVENT_FOCUS_LOST:
+                CCFG::getMM()->resetGameState(CCFG::getMM()->ePause);
+                CCFG::getMM()->setGameState(CCFG::getMM()->ePause);
+                CCFG::getMusic()->PlayChunk(CCFG::getMusic()->cPAUSE);
+                CCFG::getMusic()->PauseMusic();
+                break;
+            default:
+                break;
+        }
+    }
+
+    if(mainEvent->type == SDL_KEYUP){
+        switch(mainEvent->key.keysym.sym){
+            case SDLK_KP_ENTER: case SDLK_RETURN: case SDLK_ESCAPE:
+                keyMenuPressed = false;
+            default:
+                break;
+        }
+    }
+
+    if(mainEvent->type == SDL_KEYDOWN){
+        switch(mainEvent->key.keysym.sym){
+            case SDLK_KP_ENTER: case SDLK_RETURN:
+                if(!keyMenuPressed){
+                    CCFG::getMM()->enter();
+                    keyMenuPressed = true;
+                }
+                break;
+            case SDLK_ESCAPE:
+                printf("PUSH THE ESCAPE!\n");
+                printf("%d,%d\n",keyMenuPressed,CCFG::getMM()->getGameState() == CCFG::getMM()->eGame);
+                if(!keyMenuPressed && CCFG::getMM()->getGameState() == CCFG::getMM()->eGame){
+                    CCFG::getMM()->resetGameState(CCFG::getMM()->ePause);
+                    CCFG::getMM()->setGameState(CCFG::getMM()->ePause);
+                    CCFG::getMusic()->PlayChunk(CCFG::getMusic()->cPAUSE);
+                    CCFG::getMusic()->PauseMusic();
+                    keyMenuPressed = true;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+}
+
+
 //绘制
 void Application::Draw(){
     CCFG::getMM()->Draw(m_renderer);

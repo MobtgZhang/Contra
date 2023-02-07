@@ -114,7 +114,7 @@ void MainMenu::updateTime(){
 
 void MainMenu::updateActiveButton(int iDir){
     if(twinkle){
-       return; 
+        return; 
     }
     switch(iDir){
         case iUP_ITEM:case iDOWN_ITEM:
@@ -149,6 +149,7 @@ void MainMenu::Update(){
             CCFG::getMM()->setGameState(CCFG::getMM()->eGameLoading);
             CCFG::getMM()->getMainMenu()->setTwinkle(false);
             CCFG::getMM()->getLoadingMenu()->updateTime();
+            //CCFG::getMusic()->StopMusic();
         }
     }
     Menu::Update();

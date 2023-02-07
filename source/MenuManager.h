@@ -5,6 +5,7 @@
 # include "OptionsMenu.h"
 # include "AboutMenu.h"
 # include "LoadingMenu.h"
+# include "PauseMenu.h"
 # include "Text.h"
 
 class MenuManager{
@@ -40,11 +41,13 @@ public:
     AboutMenu* getAboutMenu();
     MainMenu* getMainMenu();
     LoadingMenu* getLoadingMenu();
+    PauseMenu* getPauseMenu();
 private:
     MainMenu* oMainMenu;
     OptionsMenu* oOptionsMenu;
     AboutMenu* oAboutMenu;
     LoadingMenu* oLoadingMenu;
+    PauseMenu* oPauseMenu;
     gameState currentGameState;
     CImg* activeOption;
 };

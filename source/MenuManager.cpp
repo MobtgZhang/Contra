@@ -6,6 +6,7 @@ MenuManager::MenuManager(){
     this->oOptionsMenu = new OptionsMenu();
     this->oAboutMenu = new AboutMenu();
     this->oLoadingMenu = new LoadingMenu();
+    this->oPauseMenu = new PauseMenu();
     this->activeOption = NULL;
 }
 
@@ -13,6 +14,8 @@ MenuManager::~MenuManager(){
     delete oMainMenu;
     delete oOptionsMenu;
     delete oAboutMenu;
+    delete oPauseMenu;
+    delete oLoadingMenu;
 }
 
 MenuManager::gameState MenuManager::getGameState(){
@@ -53,6 +56,7 @@ void MenuManager::Draw(SDL_Renderer* rR){
             oAboutMenu->Draw(rR);
             break;
         case ePause:
+            oPauseMenu->Draw(rR);
             break;
         case eGameLoading:
             oLoadingMenu->Draw(rR);
@@ -75,6 +79,7 @@ void MenuManager::Update(){
             oAboutMenu->Update();
             break;
         case ePause:
+            oPauseMenu->Update();
             break;
         case eGameLoading:
             oLoadingMenu->Update();
@@ -106,6 +111,7 @@ void MenuManager::keyPressed(int iDir){
             oLoadingMenu->updateActiveButton(iDir);
             break;
         case ePause:
+            oPauseMenu->updateActiveButton(iDir);
             break;
         default:
             break;
@@ -128,15 +134,19 @@ void MenuManager::enter(){
 			break;
         case eGameLoading:
             oLoadingMenu->enter();
+            break;
 		case ePause:
-			//oPauseMenu->enter();
+			oPauseMenu->enter();
 			break;
+        default:
+            break;
     }
 }
 
 void MenuManager::escape() {
 	switch(currentGameState) {
 		case eGame:
+
 			break;
 		case eAbout:
 			oAboutMenu->enter();
@@ -145,7 +155,7 @@ void MenuManager::escape() {
 			oOptionsMenu->escape();
 			break;
 		case ePause:
-			//oPauseMenu->escape();
+			oPauseMenu->escape();
 			break;
 		case eMainMenu:
 			oMainMenu->escape();
@@ -171,16 +181,22 @@ LoadingMenu* MenuManager::getLoadingMenu(){
     return oLoadingMenu;
 }
 
+PauseMenu* MenuManager::getPauseMenu(){
+    return oPauseMenu;
+}
+
 void MenuManager::resetGameState(gameState state){
     switch (state){
     case eMainMenu:
         oMainMenu->setactiveMenuOption(0);
         break;
     case eOptions:
+        //选项按钮
         oOptionsMenu->setactiveMenuOption(0);
         break;
     case ePause:
         //暂停按钮选项
+        oPauseMenu->setactiveMenuOption(0);
         break;
     default:
         break;
