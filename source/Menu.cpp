@@ -1,6 +1,8 @@
 # include "Menu.h"
 # include "CFG.h"
 
+# include<iostream>
+
 Menu::Menu(){
     this->activeMenuOption = 0;
 }
@@ -8,6 +10,7 @@ Menu::Menu(){
 Menu::~Menu(){
 
 }
+
 
 void Menu::Draw(SDL_Renderer* rR){
     for(unsigned int k=0;k<lMO.size();k++){

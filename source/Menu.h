@@ -12,6 +12,7 @@ protected:
     std::vector<MenuOption*> lMO;
     int activeMenuOption;
     int numOfMenuOptions;
+
 public:
     enum MenuItemAction{
         iUP_ITEM,
@@ -26,6 +27,8 @@ public:
     virtual void Draw(SDL_Renderer* rR);
 	virtual void updateActiveButton(int iDir);
     void setactiveMenuOption(int num_ID);
+    // 菜单按钮是否闪烁
+    void setActiveDraw(bool active_draw);
 };
 
 # endif

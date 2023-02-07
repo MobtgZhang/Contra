@@ -10,6 +10,8 @@ private:
     bool selectLevel;
     int activeLevelID;
     SDL_Rect rSelectLevel;
+
+    
     
 public:
     enum MainMenuState{
@@ -25,6 +27,7 @@ public:
     void Draw(SDL_Renderer* rR);
     void Update();
     void updateActiveButton(int iDir);
+
 };
 
 # endif

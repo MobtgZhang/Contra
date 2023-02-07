@@ -115,7 +115,7 @@ void Application::mainloop(){
 //按键信息
 void Application::Input(){
     switch(CCFG::getMM()->getGameState()){
-        case MenuManager::eGameLoading:case MenuManager::eGame:
+        case MenuManager::eGame:
             break;
         default:
             InputMenu();

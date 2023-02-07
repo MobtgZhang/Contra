@@ -5,6 +5,7 @@ MenuManager::MenuManager(){
     this->oMainMenu = new MainMenu();
     this->oOptionsMenu = new OptionsMenu();
     this->oAboutMenu = new AboutMenu();
+    this->oLoadingMenu = new LoadingMenu();
     this->activeOption = NULL;
 }
 
@@ -35,6 +36,8 @@ void MenuManager::setBackgroundColor(SDL_Renderer* rR){
 		case eAbout:
 			oAboutMenu->setBackgroundColor(rR);
 			break;
+        default:
+            break;
     }
 }
 
@@ -52,6 +55,7 @@ void MenuManager::Draw(SDL_Renderer* rR){
         case ePause:
             break;
         case eGameLoading:
+            oLoadingMenu->Draw(rR);
             break;
         case eGame:
             break;
@@ -73,6 +77,7 @@ void MenuManager::Update(){
         case ePause:
             break;
         case eGameLoading:
+            oLoadingMenu->Update();
             break;
         case eGame:
             break;
@@ -97,6 +102,9 @@ void MenuManager::keyPressed(int iDir){
         case eOptions:
             oOptionsMenu->updateActiveButton(iDir);
             break;
+        case eGameLoading:
+            oLoadingMenu->updateActiveButton(iDir);
+            break;
         case ePause:
             break;
         default:
@@ -118,6 +126,8 @@ void MenuManager::enter(){
 		case eOptions:
 			oOptionsMenu->enter();
 			break;
+        case eGameLoading:
+            oLoadingMenu->enter();
 		case ePause:
 			//oPauseMenu->enter();
 			break;
@@ -151,6 +161,14 @@ OptionsMenu* MenuManager::getOptionsMenu(){
 
 AboutMenu* MenuManager::getAboutMenu(){
     return oAboutMenu;
+}
+
+MainMenu* MenuManager::getMainMenu(){
+    return oMainMenu;
+}
+
+LoadingMenu* MenuManager::getLoadingMenu(){
+    return oLoadingMenu;
 }
 
 void MenuManager::resetGameState(gameState state){

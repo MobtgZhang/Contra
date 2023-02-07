@@ -26,6 +26,7 @@ MainMenu::~MainMenu(){
 
 }
 
+
 void MainMenu::Draw(SDL_Renderer* rR){
     CCFG::getLogo()->Draw(rR,160,0);
     Menu::Draw(rR);
@@ -72,9 +73,11 @@ void MainMenu::enter(){
             }else{
                 selectLevel = false;
                 CCFG::getMusic()->PlayMusic(CCFG::getMusic()->mTITLE,1);
-                //闪烁图标
-                //CCFG::getMusic()->StopMusic();
+                CCFG::getMM()->getLoadingMenu()->updateTime();
                 //这里进入到某一个关卡当中
+                // setworld etc.
+                CCFG::getMM()->getLoadingMenu()->setLoadingType(true);
+                CCFG::getMM()->setGameState(CCFG::getMM()->eGameLoading);
             }
             break;
         case MainMenu::mainOPTIONS:
