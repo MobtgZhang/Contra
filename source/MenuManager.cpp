@@ -24,11 +24,17 @@ void MenuManager::setGameState(gameState state){
 
 void MenuManager::setBackgroundColor(SDL_Renderer* rR){
     switch (currentGameState){
-    case eMainMenu:
-        SDL_SetRenderDrawColor(rR,0,0,0,255);
-        break;
-    default:
-        break;
+        case eMainMenu:
+            SDL_SetRenderDrawColor(rR,0,0,0,255);
+            break;
+        case eGameLoading:
+			SDL_SetRenderDrawColor(rR, 0, 0, 0, 255);
+			break;
+		case eGame:
+			break;
+		case eAbout:
+			oAboutMenu->setBackgroundColor(rR);
+			break;
     }
 }
 
@@ -62,6 +68,7 @@ void MenuManager::Update(){
             oOptionsMenu->Update();
             break;
         case eAbout:
+            oAboutMenu->Update();
             break;
         case ePause:
             break;
