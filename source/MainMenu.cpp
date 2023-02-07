@@ -79,11 +79,12 @@ void MainMenu::enter(){
             CCFG::getMM()->resetGameState(CCFG::getMM()->eOptions);
             CCFG::getMM()->getOptionsMenu()->updateVolumeRect();
             CCFG::getMM()->setGameState(CCFG::getMM()->eOptions);
-            printf("HERE IS THE MAINOPTIONS.\n");
             break;
         case MainMenu::mainABOUT:
             //关于菜单
-            printf("HERE IS THE MAINABOUT.\n");
+            CCFG::getMM()->getAboutMenu()->updateTime();
+            CCFG::getMM()->setGameState(CCFG::getMM()->eAbout);
+            CCFG::getMusic()->PlayMusic(CCFG::getMusic()->mJUNGLE);
             break;
         default:
             break;

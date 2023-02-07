@@ -1,5 +1,6 @@
 # ifndef CFG_H
 # define CFG_H
+
 # include "MenuManager.h"
 # include "Music.h"
 

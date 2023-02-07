@@ -3,6 +3,7 @@
 # define MENUMANAGER_H
 # include "MainMenu.h"
 # include "OptionsMenu.h"
+# include "AboutMenu.h"
 # include "Text.h"
 
 class MenuManager{
@@ -35,11 +36,14 @@ public:
     void escape();
     void setKey(int keyID);
     OptionsMenu* getOptionsMenu();
+    AboutMenu* getAboutMenu();
 private:
     MainMenu* oMainMenu;
     OptionsMenu* oOptionsMenu;
+    AboutMenu* oAboutMenu;
     gameState currentGameState;
     CImg* activeOption;
 };
 
 # endif
+

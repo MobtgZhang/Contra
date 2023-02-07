@@ -69,7 +69,8 @@ public:
 
 
     // 播放音乐
-    void PlayMusic();
+    void PlayMusic(eMusic musicID);
+    void StopMusic();
     void PlayChunk(eChunk chunkID);
 
     Mix_Music* loadMusic(std::string fileName);

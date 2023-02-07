@@ -4,11 +4,14 @@ MenuManager::MenuManager(){
     this->currentGameState = eMainMenu;
     this->oMainMenu = new MainMenu();
     this->oOptionsMenu = new OptionsMenu();
+    this->oAboutMenu = new AboutMenu();
     this->activeOption = NULL;
 }
 
 MenuManager::~MenuManager(){
     delete oMainMenu;
+    delete oOptionsMenu;
+    delete oAboutMenu;
 }
 
 MenuManager::gameState MenuManager::getGameState(){
@@ -38,6 +41,7 @@ void MenuManager::Draw(SDL_Renderer* rR){
             oOptionsMenu->Draw(rR);
             break;
         case eAbout:
+            oAboutMenu->Draw(rR);
             break;
         case ePause:
             break;
@@ -102,7 +106,7 @@ void MenuManager::enter(){
 			//Application::getMap()->setDrawLines(!Application::getMap()->getDrawLines());
 			break;
 		case eAbout:
-			//oAboutMenu->enter();
+			oAboutMenu->enter();
 			break;
 		case eOptions:
 			oOptionsMenu->enter();
@@ -118,7 +122,7 @@ void MenuManager::escape() {
 		case eGame:
 			break;
 		case eAbout:
-			//oAboutMenu->enter();
+			oAboutMenu->enter();
 			break;
 		case eOptions:
 			oOptionsMenu->escape();
@@ -136,6 +140,10 @@ void MenuManager::escape() {
 
 OptionsMenu* MenuManager::getOptionsMenu(){
     return oOptionsMenu;
+}
+
+AboutMenu* MenuManager::getAboutMenu(){
+    return oAboutMenu;
 }
 
 void MenuManager::resetGameState(gameState state){

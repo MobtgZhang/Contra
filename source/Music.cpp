@@ -86,9 +86,24 @@ int Music::getVolume(){
     return this->iVolume;
 }
 
-void Music::PlayMusic(){
-
+void Music::PlayMusic(eMusic musicID){
+    if(musicID!=mNOTHING){
+        Mix_PlayMusic(vMusic[musicID-1],-1);
+        musicStopped = false;
+        currentMusic = musicID;
+    }else{
+        StopMusic();
+        currentMusic = mNOTHING;
+    }
 }
+
+void Music::StopMusic(){
+    if(!musicStopped){
+        Mix_HaltMusic();
+        musicStopped = true;
+    }
+}
+
 
 void Music::PlayChunk(eChunk chunkID){
     Mix_VolumeChunk(vChunk[chunkID],iVolume);
