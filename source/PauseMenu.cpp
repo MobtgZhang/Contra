@@ -54,7 +54,7 @@ void PauseMenu::enter(){
     switch(activeMenuOption){
         case 0:
             CCFG::getMM()->setGameState(CCFG::getMM()->eGame);
-            //CCFG::getMusic()->PlayMusic(CCFG::getMusic()->mGAMEOVER,-1);
+            CCFG::getMusic()->PlayMusic();
             break;
         case 1:
             CCFG::getMM()->getOptionsMenu()->setEscapeToMainMenu(false);

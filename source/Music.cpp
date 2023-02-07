@@ -112,12 +112,12 @@ void Music::changeMusic(){
 }
 
 void Music::PauseMusic(){
-    printf("Pause the Music!\n");
+    //printf("Value is%d\n",Mix_PausedMusic());
     if(Mix_PausedMusic()){
         Mix_ResumeMusic();
         musicStopped = false;
     }else{
-        Mix_PausedMusic();
+        Mix_PauseMusic();
         musicStopped = true;
     }
 }

@@ -192,6 +192,7 @@ void Application::InputMenu(){
 void Application::InputLayer(){
     if(mainEvent->type == SDL_WINDOWEVENT){
         switch(mainEvent->window.event){
+            //当前窗口失去焦点信息时候，进入暂停界面，并且暂停音乐
             case SDL_WINDOWEVENT_FOCUS_LOST:
                 CCFG::getMM()->resetGameState(CCFG::getMM()->ePause);
                 CCFG::getMM()->setGameState(CCFG::getMM()->ePause);
@@ -204,9 +205,11 @@ void Application::InputLayer(){
     }
 
     if(mainEvent->type == SDL_KEYUP){
+        //回车键/ESC键抬起的时候，
         switch(mainEvent->key.keysym.sym){
             case SDLK_KP_ENTER: case SDLK_RETURN: case SDLK_ESCAPE:
                 keyMenuPressed = false;
+                break;
             default:
                 break;
         }
@@ -221,8 +224,6 @@ void Application::InputLayer(){
                 }
                 break;
             case SDLK_ESCAPE:
-                printf("PUSH THE ESCAPE!\n");
-                printf("%d,%d\n",keyMenuPressed,CCFG::getMM()->getGameState() == CCFG::getMM()->eGame);
                 if(!keyMenuPressed && CCFG::getMM()->getGameState() == CCFG::getMM()->eGame){
                     CCFG::getMM()->resetGameState(CCFG::getMM()->ePause);
                     CCFG::getMM()->setGameState(CCFG::getMM()->ePause);
