@@ -19,13 +19,20 @@ MainMenu::MainMenu(){
     this->activeMenuOption = mainSTART;
     this->selectLevel = false;
     this->activeLevelID = 0;
-
+    this->iTime = SDL_GetTicks();
+    this->twinkleTime = SDL_GetTicks();
+    //设置菜单是否闪烁
+    this->twinkle = false;
 }
 
 MainMenu::~MainMenu(){
 
 }
 
+void MainMenu::setTwinkle(bool twinkle){
+    Menu::setTwinkle(twinkle);
+    this->twinkle = twinkle;    
+}
 
 void MainMenu::Draw(SDL_Renderer* rR){
     CCFG::getLogo()->Draw(rR,160,0);
@@ -66,6 +73,9 @@ void MainMenu::escape(){
 }
 
 void MainMenu::enter(){
+    if(twinkle){
+       return; 
+    }
     switch(activeMenuOption){
         case MainMenu::mainSTART:
             if(!selectLevel){
@@ -74,10 +84,11 @@ void MainMenu::enter(){
                 selectLevel = false;
                 CCFG::getMusic()->PlayMusic(CCFG::getMusic()->mTITLE,1);
                 CCFG::getMM()->getLoadingMenu()->updateTime();
+                CCFG::getMM()->getMainMenu()->setTwinkle(true);
+                CCFG::getMM()->getMainMenu()->updateTime();
                 //这里进入到某一个关卡当中
                 // setworld etc.
                 CCFG::getMM()->getLoadingMenu()->setLoadingType(true);
-                CCFG::getMM()->setGameState(CCFG::getMM()->eGameLoading);
             }
             break;
         case MainMenu::mainOPTIONS:
@@ -98,7 +109,14 @@ void MainMenu::enter(){
     }
 }
 
+void MainMenu::updateTime(){
+    this->iTime = SDL_GetTicks();
+}
+
 void MainMenu::updateActiveButton(int iDir){
+    if(twinkle){
+       return; 
+    }
     switch(iDir){
         case iUP_ITEM:case iDOWN_ITEM:
             if(!selectLevel){
@@ -127,6 +145,11 @@ void MainMenu::updateActiveButton(int iDir){
 }
 
 void MainMenu::Update(){
-
+    if(twinkle){
+        if(SDL_GetTicks() - this->iTime>=6000 && CCFG::getMM()->getGameState()==CCFG::getMM()->eMainMenu){
+            CCFG::getMM()->setGameState(CCFG::getMM()->eGameLoading);
+            CCFG::getMM()->getMainMenu()->setTwinkle(false);
+        }
+    }
     Menu::Update();
 }

@@ -12,6 +12,12 @@ protected:
     std::vector<MenuOption*> lMO;
     int activeMenuOption;
     int numOfMenuOptions;
+    // 设置是否遮罩
+    bool active_draw;
+    // 闪烁时间
+    unsigned int twinkleTime;
+    //设置菜单按钮是否闪烁
+    bool twinkle;
 
 public:
     enum MenuItemAction{
@@ -28,7 +34,8 @@ public:
 	virtual void updateActiveButton(int iDir);
     void setactiveMenuOption(int num_ID);
     // 菜单按钮是否闪烁
-    void setActiveDraw(bool active_draw);
+    
+    void setTwinkle(bool twinkle);
 };
 
 # endif

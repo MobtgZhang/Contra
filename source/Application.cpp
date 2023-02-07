@@ -125,8 +125,6 @@ void Application::Input(){
 void Application::InputMenu(){
     if(mainEvent->type == SDL_KEYDOWN){
         CCFG::getMM()->setKey(mainEvent->key.keysym.sym);
-
-
         switch(mainEvent->key.keysym.sym){
             //按下了向下的按键
             case SDLK_s: case SDLK_DOWN:
