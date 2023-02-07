@@ -86,9 +86,9 @@ int Music::getVolume(){
     return this->iVolume;
 }
 
-void Music::PlayMusic(eMusic musicID){
+void Music::PlayMusic(eMusic musicID,int loops){
     if(musicID!=mNOTHING){
-        Mix_PlayMusic(vMusic[musicID-1],-1);
+        Mix_PlayMusic(vMusic[musicID-1],loops);
         musicStopped = false;
         currentMusic = musicID;
     }else{

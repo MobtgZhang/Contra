@@ -69,7 +69,7 @@ public:
 
 
     // 播放音乐
-    void PlayMusic(eMusic musicID);
+    void PlayMusic(eMusic musicID,int loops=-1);
     void StopMusic();
     void PlayChunk(eChunk chunkID);
 

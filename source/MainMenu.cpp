@@ -70,6 +70,10 @@ void MainMenu::enter(){
             if(!selectLevel){
                 selectLevel = true;
             }else{
+                selectLevel = false;
+                CCFG::getMusic()->PlayMusic(CCFG::getMusic()->mTITLE,1);
+                //闪烁图标
+                //CCFG::getMusic()->StopMusic();
                 //这里进入到某一个关卡当中
             }
             break;
