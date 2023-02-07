@@ -1,4 +1,5 @@
 # include "MenuManager.h"
+# include "Application.h"
 
 MenuManager::MenuManager(){
     this->currentGameState = eMainMenu;
@@ -62,6 +63,7 @@ void MenuManager::Draw(SDL_Renderer* rR){
             oLoadingMenu->Draw(rR);
             break;
         case eGame:
+            Application::getMap()->Draw(rR);
             break;
         default:
             break;

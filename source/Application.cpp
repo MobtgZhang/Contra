@@ -2,7 +2,9 @@
 # include "CFG.h"
 # include <iostream>
 
-// some initialize parameters
+Map* Application::oMap = new Map();
+
+// 是否一直按着向左或者向右按键
 bool Application::keyLeftPressed = false;
 bool Application::keyRightPressed = false;
 // 游戏控制键
@@ -19,6 +21,10 @@ bool Application::keyMenuPressed = false;
 
 //游戏退出
 bool Application::quitGame = false;
+//获取地图
+Map* Application::getMap(){
+    return oMap;
+}
 
 Application::Application(){
     this->quitGame = false;
@@ -45,10 +51,10 @@ Application::Application(){
     SDL_FreeSurface(loadedSurface);
     // 设置全局事件信息
     mainEvent = new SDL_Event();
-    // 加载音效文件
     
     // 加载地图文件
-    
+
+    oMap = new Map(m_renderer);
     // 显示界面，
     CCFG::getMM()->setActiveOption(m_renderer);
     CCFG::getLogo()->setImg("contra",m_renderer);

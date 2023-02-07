@@ -1,6 +1,7 @@
 # ifndef APPLICATION_H
 # define APPLICATION_H
 # include <SDL2/SDL.h>
+# include "Map.h"
 
 class Application{
 private:
@@ -19,6 +20,8 @@ private:
     static bool keyUp,keyDown,keyLeft,keyRight;
     static bool keyA,keyB,keyX,keyY;
     static bool keyMenuPressed;
+
+    static Map* oMap;
 public:
     Application();
     ~Application();
@@ -31,8 +34,9 @@ public:
     // 加载玩家信息
     void InputLayer();
     // 设置游戏退出
-    
     static bool quitGame;
+    // 加载地图信息
+    static Map* getMap();
 };
 
 # endif
