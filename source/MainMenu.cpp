@@ -88,7 +88,7 @@ void MainMenu::enter(){
                 CCFG::getMM()->getMainMenu()->updateTime();
                 //这里进入到某一个关卡当中
                 // setworld etc.
-                CCFG::getMM()->getLoadingMenu()->setLoadingType(true);
+                CCFG::getMM()->getLoadingMenu()->setLoadingType(false);
             }
             break;
         case MainMenu::mainOPTIONS:
