@@ -26,8 +26,10 @@ public:
     static int keyIDUp,keyIDDown,keyIDLeft,keyIDRight;
     // 控制动作键
     static int keyIDA,keyIDB,keyIDX,keyIDY;
+    // 设置地图是否可以后退
     static bool canMoveBackward;
-
+    // 获取keyID 对应的字符串
+    static std::string getKeyString(int keyID);
 };
 
 # endif

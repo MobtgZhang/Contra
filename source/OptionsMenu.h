@@ -33,6 +33,7 @@ public:
 
     void escape();
     void enter();
+    void setKey(int keyID);
     void setEscapeToMainMenu(bool escapeToMainMenu);
     void updateVolumeRect();
 

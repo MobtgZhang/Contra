@@ -154,3 +154,13 @@ void MenuManager::resetGameState(gameState state){
     }
 }
 
+void MenuManager::setKey(int keyID){
+    switch(currentGameState){
+        case eOptions:
+            oOptionsMenu->setKey(keyID);
+            break;
+        default:
+            break;
+    }
+}
+
